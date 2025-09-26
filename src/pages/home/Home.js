@@ -1,9 +1,15 @@
 import Styles from './home.module.css';
+import Header from '../../components/header/Header';
+import Footer from '../../components/footer/Footer';
+import HeroSection from '../../components/heroSection/HeroSection';
+import AboutHeroSection from '../../components/aboutHeroSection/AboutHeroSection';
 export default function Home() {
   return (
     <div className={Styles.home}>
-      <h1>Home Page</h1>
-      <p>This is the home page of our application.</p>
+      <Header />
+      <HeroSection />
+      <AboutHeroSection />
+      <Footer />
     </div>
   );
 }

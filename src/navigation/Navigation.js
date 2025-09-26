@@ -6,6 +6,8 @@ import Services from '../pages/services/Services';
 import Bookings from '../pages/bookings/Bookings';
 import Signup from '../pages/signup/SignUp';
 import Signin from '../pages/signin/Signin';
+import Contact from '../pages/contact/Contact';
+import Admin from '../pages/admin/Admin';
 import PrivateRoute from './PrivateRouting';
 import PublicRoute from './PublicRouting';
 export default function Navigation() {
@@ -19,12 +21,20 @@ export default function Navigation() {
       element:<About/>
     },
     {
+      path:"/contact",
+      element:<Contact/>
+    },
+    {
       path:"/bookings",
       element:<Bookings/>
     },
     {
       path:"/services",
       element:<Services/>
+    },
+    {
+      path:"/admin",
+      element:<Admin/>
     },
     {
       path:"/signup",
