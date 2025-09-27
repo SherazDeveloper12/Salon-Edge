@@ -114,11 +114,13 @@
   object-fit: cover;
   margin-top: 10px;
 }
+
 .daysAvailableList {
   list-style-type: none;
   padding: 0;
   margin: 10px 0 0 0;
 }
+
 .dayItem {
   background: var(--primary-color);
   color: var(--text-color);
@@ -129,13 +131,151 @@
   margin-bottom: 5px;
   font-size: 0.9em;
 }
+
 .availabledot {
-color: rgb(68, 233, 68);
+  color: rgb(68, 233, 68);
 }
+
 .unavailabledot {
   color: orange;
 }
-.status{
-    display: flex;
-    gap: 10px;
+
+.status {
+  display: flex;
+  gap: 10px;
+}
+
+/* New styles for DateTime Selection */
+.dateTimeSelection {
+  text-align: center;
+}
+
+.calendarContainer {
+  margin-top: 20px;
+}
+
+.monthNavigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.navButton {
+  background: transparent;
+  border: 1px solid var(--text-color);
+  color: var(--text-color);
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.navButton:hover {
+  background: var(--text-color);
+  color: var(--background-color);
+}
+
+.calendarHeader {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  margin-bottom: 10px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.weekDay {
+  font-weight: bold;
+  padding: 10px;
+  background: var(--secondary-color);
+  color: var(--text-color);
+  border-radius: 5px;
+  text-align: center;
+}
+
+.calendarGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.calendarDay {
+  padding: 10px;
+  border: 1px solid var(--secondary-color);
+  border-radius: 5px;
+  cursor: pointer;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calendarDay:hover {
+  background: var(--primary-color);
+  color: var(--background-color);
+}
+
+.disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  color: #666;
+}
+
+.calendarDay.disabled:hover {
+  background: #ccc;
+  transform: none;
+}
+
+.timeSelection {
+  margin-top: 20px;
+}
+
+.timeDropdown {
+  padding: 10px;
+  border: 1px solid var(--secondary-color);
+  border-radius: 5px;
+  margin-top: 10px;
+  width: 200px;
+  background: var(--background-color);
+  color: var(--text-color);
+}
+
+.timeDropdown:disabled {
+  background: #eee;
+  cursor: not-allowed;
+}
+
+/* New styles for Confirm Booking */
+.confirmBooking {
+  text-align: center;
+}
+
+.bookingDetails {
+  margin-top: 20px;
+  text-align: left;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.bookingDetails h3 {
+  margin-top: 15px;
+}
+
+.bookingDetails ul {
+  list-style: none;
+  padding: 0;
+}
+
+.bookingDetails li {
+  margin: 5px 0;
+}
+@media (max-width: 768px) {
+    .weekDay{
+        font-size: 0.8em;
+        padding: 8px;
+    }
 }
