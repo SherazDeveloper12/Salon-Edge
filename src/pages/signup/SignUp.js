@@ -2,18 +2,22 @@ import Styles from './signup.module.css';
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
 import { useState } from 'react';
-export default function SignUp() {
+import {signup} from '../../features/slices/authslice';
 
-   const [username, setUsername] = useState('');
+import { useDispatch } from 'react-redux';
+export default function SignUp() {
+  const dispatch = useDispatch();
+   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
  const clickhandler = () => {
-  let user = { username, email, password };
+  let user = { name, email, password };
 
     // Handle sign-up logic here
     console.log('User Created', user);
+    dispatch(signup(user));
     // Reset form fields
-    setUsername('');
+    setName('');
     setEmail('');
     setPassword('');
    
@@ -29,8 +33,8 @@ export default function SignUp() {
             placeholder="Username"
             className={Styles.signupInput}
             required
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
           />
           <input
             type="email"

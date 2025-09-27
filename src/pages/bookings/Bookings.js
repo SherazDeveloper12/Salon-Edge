@@ -2,10 +2,11 @@ import Styles from './bookings.module.css';
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
 import { useState, useEffect } from 'react'; // Added useEffect
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-
+import { addAppointment } from '../../features/slices/appointmentSlice'; // Import the action
 export default function Bookings() {
+  const dispatch = useDispatch();
   const [selectedServices, setSelectedServices] = useState([]); // State for selected services
   const [selectedStylist, setSelectedStylist] = useState(null);
   const [selectedDate, setSelectedDate] = useState(null); // New state for selected date
@@ -15,9 +16,10 @@ export default function Bookings() {
   const [selectDateTime, setSelectDateTime] = useState(false);
   const [confirmBooking, setConfirmBooking] = useState(false);
   const [currentMonth, setCurrentMonth] = useState(new Date()); // For Next/Prev Month
+  const [OrderConfirmed, setOrderConfirmed] = useState(false); // New state for order confirmation
   const { services, status, error } = useSelector((state) => state.services);
   const { stylists, stylistStatus, stylistError } = useSelector((state) => state.stylists);
-
+  const user = useSelector((state) => state.auth.User);
   const handleServiceSelect = (service) => {
     console.log("Before update - SelectedServices:", selectedServices);
     setSelectedServices((prevSelected) => {
@@ -131,21 +133,24 @@ export default function Bookings() {
   const handleConfirmBooking = () => {
     // Placeholder for actual booking confirmation logic
     let bookingDetails = {
+      status: 'Pending',
       services: selectedServices,
       stylist: selectedStylist,
       date: selectedDate,
       time: selectedTime,
-      user: "Current User" // Replace with actual user info if available
+      user: user,
+      createdAt: new Date().toISOString()
     };
     console.log("Booking Details:", bookingDetails);
-    alert('Booking Confirmed!');
+    // Here you would typically send bookingDetails to your backend API
+    dispatch(addAppointment(bookingDetails)); // Example action dispatch
     // Reset all selections after confirmation
     setSelectedServices([]);
     setSelectedStylist(null);
     setSelectedDate(null);
     setSelectedTime(null);
     setConfirmBooking(false);
-    setSelectService(true);
+    setSelectService(false);
     setSelectStylistStep(false);
     setSelectDateTime(false); 
   };
@@ -154,17 +159,13 @@ export default function Bookings() {
     <div className={Styles.bookings}>
       <Header />
       <div className={Styles.Bookings}>
-        <h1>Bookings Page</h1>
-        <p>This is the bookings page of our application.</p>
+        
         <div className={Styles.content}>
           {selectService && (
             <div className={Styles.serviceSelection}>
               <h2>Select a Service</h2>
               <p>Please choose a service to proceed with your booking.</p>
-              <div className={Styles.buttons}>
-                <Link to="/" className={Styles.cancelLink}><button className={Styles.cancelButton}>Cancel</button></Link>
-                <button className={Styles.continueButton} onClick={() => ContinueClick()} disabled={selectedServices.length === 0}>Continue</button>
-              </div>
+             
               <div className={Styles.servicesList}>
                 {services.map((service) => (
                   <div
@@ -181,16 +182,17 @@ export default function Bookings() {
                   </div>
                 ))}
               </div>
+               <div className={Styles.buttons}>
+                <Link to="/" className={Styles.cancelLink}><button className={Styles.cancelButton}>Cancel</button></Link>
+                <button className={Styles.continueButton} onClick={() => ContinueClick()} disabled={selectedServices.length === 0}>Continue</button>
+              </div>
             </div>
           )}
           {selectStylistStep && (
             <div className={Styles.stylistSelection}>
               <h2>Select a Stylist</h2>
               <p>Please choose a stylist to proceed with your booking.</p>
-              <div className={Styles.buttons}>
-                <button onClick={() => { setSelectStylistStep(false); setSelectService(true); }} className={Styles.BackButton}>Back</button>
-                <button className={Styles.continueButton} onClick={() => StylistContinueClick()} disabled={!selectedStylist}>Continue</button>
-              </div>
+              
               <div className={Styles.stylistsList}>
                 {stylists.map((stylist) => (
                   <div
@@ -221,16 +223,17 @@ export default function Bookings() {
                   </div>
                 ))}
               </div>
+              <div className={Styles.buttons}>
+                <button onClick={() => { setSelectStylistStep(false); setSelectService(true); }} className={Styles.BackButton}>Back</button>
+                <button className={Styles.continueButton} onClick={() => StylistContinueClick()} disabled={!selectedStylist}>Continue</button>
+              </div>
             </div>
           )}
           {selectDateTime && (
             <div className={Styles.dateTimeSelection}>
               <h2>Select Date & Time</h2>
               <p>Please choose a date and time to proceed with your booking.</p>
-              <div className={Styles.buttons}>
-                <button onClick={() => { setSelectDateTime(false); setSelectStylistStep(true); }} className={Styles.BackButton}>Back</button>
-                <button className={Styles.continueButton} onClick={() => DateTimeContinueClick()} disabled={!selectedDate || !selectedTime}>Continue</button>
-              </div>
+             
               <div className={Styles.calendarContainer}>
                 <div className={Styles.monthNavigation}>
                   <button onClick={prevMonth} className={Styles.navButton}>←</button>
@@ -273,6 +276,10 @@ export default function Bookings() {
                   <option value="4:00 PM">4:00 PM</option>
                 </select>
               </div>
+               <div className={Styles.buttons}>
+                <button onClick={() => { setSelectDateTime(false); setSelectStylistStep(true); }} className={Styles.BackButton}>Back</button>
+                <button className={Styles.continueButton} onClick={() => DateTimeContinueClick()} disabled={!selectedDate || !selectedTime}>Continue</button>
+              </div>
             </div>
           )}
           {confirmBooking && (
@@ -300,7 +307,19 @@ export default function Bookings() {
               </div>
               <div className={Styles.buttons}>
                 <button onClick={() => { setConfirmBooking(false); setSelectDateTime(true); }} className={Styles.BackButton}>Back</button>
-                <button className={Styles.continueButton} onClick={() => handleConfirmBooking()}>Confirm</button> {/* Placeholder for API call */}
+                <button className={Styles.continueButton} onClick={() => {handleConfirmBooking(); setOrderConfirmed(true);}} >Confirm</button> {/* Placeholder for API call */}
+              </div>
+            </div>
+          )}
+          {OrderConfirmed && (
+            <div className={Styles.orderConfirmed}>
+              <div className={Styles.OrderConfirmedIcon}>
+<img src={require('../../assets/confirmed-svgrepo-com.png')} alt="Confirmed" />
+              </div>
+              <h2>Booking Confirmed!</h2>
+              <p>Thank you for your booking. We look forward to seeing you!</p>
+              <div className={Styles.buttons}>
+                <Link to="/" onClick={() => setOrderConfirmed(false)} className={Styles.homeLink}><button className={Styles.homeButton}>Go to Home</button></Link>
               </div>
             </div>
           )}

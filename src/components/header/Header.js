@@ -1,10 +1,16 @@
 import Styles from './header.module.css';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { logout } from '../../features/slices/authslice';
+import { useSelector , useDispatch} from 'react-redux';
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const user = useSelector((state) => state.auth.User);
+  const dispatch = useDispatch();
 
-  
+  const handleLogout = () => {
+    dispatch(logout());
+  };
 
   return (
     <header className={Styles.header}>
@@ -35,9 +41,9 @@ export default function Header() {
           Contact
           </li></Link>
         </ul>
-              {(false)? <>
-            <Link to="/" ><button onClick={() => setIsMenuOpen(false) } className={Styles.login}>Logout</button></Link>
-            <Link to="/profile"><button className={Styles.profilebtn}>  <p> user profile </p>    </button></Link>
+              {(user)? <>
+            <Link to="/" ><button onClick={handleLogout} className={Styles.login}>Logout</button></Link>
+            <Link to="/profile"><button className={Styles.profilebtn}>  <p> {user.name} </p>    </button></Link>
              </>:  
              <div className={Styles.SidebarAuthButtons}>
           <Link to="/login" className={Styles.SidebarloginButton}><button>Login</button></Link>
@@ -84,8 +90,13 @@ export default function Header() {
           </li></Link> 
         </ul>
         <div className={Styles.authButtons}>
+          {(user)? <>
+            <Link to="/"  ><button onClick={handleLogout} className={Styles.login}>Logout</button></Link>
+            <Link to="/profile"><button className={Styles.profilebtn}>  <p> {user.name} </p>    </button></Link>
+             </>:<>
           <Link to="/login" className={Styles.loginButton}><button>Login</button></Link>
           <Link to="/signup" className={Styles.signupButton}><button>Sign Up</button></Link>
+          </>}
         </div>
       </nav>
     </header>

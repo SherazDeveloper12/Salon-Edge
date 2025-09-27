@@ -2,10 +2,12 @@ import Styles from './signin.module.css';
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
 import { useState } from 'react';
+import {login} from '../../features/slices/authslice'
+import { useDispatch } from 'react-redux';
 export default function Signin() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const dispatch = useDispatch()
   const handleSubmit = () => {
     // Handle sign-in logic here
     let signinData = {
@@ -13,7 +15,7 @@ export default function Signin() {
       password: password
     };
     console.log('Sign-in data:', signinData);
-
+    dispatch(login(signinData))
     // Reset form fields
     setEmail('');
     setPassword('');
