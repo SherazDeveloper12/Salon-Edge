@@ -1,4 +1,141 @@
-.Bookings{
-    width: 100%;
-    min-height: 70vh;
+.Bookings {
+  width: 100%;
+  min-height: 70vh;
+}
+
+.servicesList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.stylistsList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.serviceItem,
+.stylistItem {
+  border: 1px solid var(--secondary-color);
+  border-radius: 5px;
+  padding: 10px;
+  width: 250px;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.serviceItem:hover,
+.stylistItem:hover {
+  transform: scale(1.05);
+}
+
+.active {
+  border: 2px solid var(--text-color);
+  background: var(--primary-color);
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 20px;
+}
+
+.cancelLink {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+.cancelButton {
+  background-color: transparent;
+  border: 2px solid var(--text-color);
+  color: var(--text-color);
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.cancelButton:hover {
+  background-color: var(--text-color);
+  color: var(--background-color);
+}
+
+.continueButton {
+  background-color: var(--text-color);
+  border: none;
+  color: var(--background-color);
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.continueButton:hover {
+  background: var(--primary-color);
+  color: var(--text-color);
+}
+
+.BackLink {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+.BackButton {
+  background-color: transparent;
+  border: 2px solid var(--text-color);
+  color: var(--text-color);
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.BackButton:hover {
+  background-color: var(--text-color);
+  color: var(--background-color);
+}
+
+.stylistImage {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-top: 10px;
+}
+.daysAvailableList {
+  list-style-type: none;
+  padding: 0;
+  margin: 10px 0 0 0;
+}
+.dayItem {
+  background: var(--primary-color);
+  color: var(--text-color);
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 3px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  font-size: 0.9em;
+}
+.availabledot {
+color: rgb(68, 233, 68);
+}
+.unavailabledot {
+  color: orange;
+}
+.status{
+    display: flex;
+    gap: 10px;
 }

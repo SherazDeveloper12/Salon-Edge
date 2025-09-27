@@ -21,18 +21,19 @@ export default function Header() {
           <div className={Styles.sidebarmenu}>
             <div className={Styles.sidebar}>
               <ul className={Styles.sidebarnavLinks}>
+         <Link to="/" className={Styles.navLink}>  <li>
+           Home
+          </li> </Link>
+          <Link to="/about" className={Styles.navLink}>  <li>
+            About
+          </li> </Link>
+          <Link to="/services" className={Styles.navLink}>  <li>
+            Services
+          </li> </Link>
+         <Link to="/contact" className={Styles.navLink}>
           <li>
-            <Link to="/" className={Styles.navLink}>Home</Link>
-          </li>
-          <li>
-            <Link to="/about" className={Styles.navLink}>About</Link>
-          </li>
-          <li>
-            <Link to="/services" className={Styles.navLink}>Services</Link>
-          </li>
-          <li>
-            <Link to="/contact" className={Styles.navLink}>Contact</Link>
-          </li>
+          Contact
+          </li></Link>
         </ul>
               {(false)? <>
             <Link to="/" ><button onClick={() => setIsMenuOpen(false) } className={Styles.login}>Logout</button></Link>
@@ -64,18 +65,23 @@ export default function Header() {
           </div>
         </Link>
         <ul className={Styles.navLinks}>
+         <Link to="/" className={Styles.navLink}>  <li>
+           Home
+          </li> </Link>
+          <Link to="/about" className={Styles.navLink}>  <li>
+            About
+          </li> </Link>
+          <Link to="/services" className={Styles.navLink}>  <li>
+            Services
+          </li> </Link>
+         <Link to="/contact" className={Styles.navLink}>
           <li>
-            <Link to="/" className={Styles.navLink}>Home</Link>
-          </li>
+          Contact
+          </li></Link> 
+         <Link to="/admin" className={Styles.navLink}>
           <li>
-            <Link to="/about" className={Styles.navLink}>About</Link>
-          </li>
-          <li>
-            <Link to="/services" className={Styles.navLink}>Services</Link>
-          </li>
-          <li>
-            <Link to="/contact" className={Styles.navLink}>Contact</Link>
-          </li>
+          Admin
+          </li></Link> 
         </ul>
         <div className={Styles.authButtons}>
           <Link to="/login" className={Styles.loginButton}><button>Login</button></Link>

@@ -10,7 +10,7 @@
 .aboutHeroSection h1{
     font-size: 3rem;
     font-weight: 900;
- 
+    text-align: center;
     color: var(--text-color);
 }
 .line{
@@ -27,6 +27,7 @@
     justify-content: center;
     gap: 20px;
     width: 100%;
+    flex-wrap: wrap;
     
 }
 

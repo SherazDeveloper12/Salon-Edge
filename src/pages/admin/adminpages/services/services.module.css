@@ -1,0 +1,92 @@
+.Services{
+    display: flex;
+    background-color: var(--background-color-light);
+}
+.Services_container{
+    padding: 20px;
+    width: 100%;
+}
+.Services_TopBox{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.AddServiceButton{
+    padding: 10px 20px;
+     background: var(--secondary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.AddServiceButton:hover{
+    background: var(--primary-color);
+    color: var(--text-color);
+}
+.AddServiceForm{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+.FormGroup{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.Label{
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+.Input, .Textarea {
+    background: var(--background-color-light);
+    padding: 10px;
+    border: 1px solid var(--text-color);
+    border-radius: 5px;
+    font-size: 16px;
+    color: var(--text-color);
+}
+.Input:focus, .Textarea:focus {
+ background: var(--secondary-color);
+    outline: none;
+}
+.Textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+.SubmitButton{
+    padding: 10px 20px;
+    background: var(--secondary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    align-self: flex-start;
+}
+.SubmitButton:hover{
+        background: var(--primary-color);
+    color: var(--text-color);
+}
+.Buttons{
+    display: flex;
+    gap: 10px;
+}
+.CancelButton{
+    padding: 10px 20px;
+    background: var(--secondary-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    align-self: flex-start;
+}
+.CancelButton:hover{
+     background: red;
+    color: var(--text-color);
+}

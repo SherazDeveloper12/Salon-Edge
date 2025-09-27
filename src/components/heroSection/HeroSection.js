@@ -1,4 +1,5 @@
 import Styles from './heroSection.module.css';
+import { Link } from 'react-router-dom';
 export default function HeroSection() {
   return (
     <section className={Styles.hero}>
@@ -11,8 +12,12 @@ export default function HeroSection() {
         </div>
         <p className={Styles.heroSubtitle}>Cutting-edge salon styling tailored to highlight your natural beauty and confidence.</p>
         <div className={Styles.heroButtons}>
+          <Link to="/bookings">
             <button className={Styles.heroButtonPrimary}>Book Your Appointment</button>
+          </Link>
+          <Link to="/services">
             <button className={Styles.heroButtonSecondary}>View Our Services</button>
+          </Link>
         </div>
       </div>
     </section>
