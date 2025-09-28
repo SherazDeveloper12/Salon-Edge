@@ -5,6 +5,8 @@
 .Services_container{
     padding: 20px;
     width: 100%;
+    box-sizing: border-box;
+     padding-left: 60px; /* Space for the navbar */
 }
 .Services_TopBox{
     width: 100%;

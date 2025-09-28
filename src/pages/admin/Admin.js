@@ -100,7 +100,8 @@ export default function Admin() {
       <div className={Styles.AdminNavbar}>
         <AdminNavbar />
       </div>
-      <div className={Styles.adminContainer}>
+      <div className={Styles.adminContainer} style={{ marginTop: "3rem" }}>
+        {/* Added marginTop to push content below the collapsed navbar */}
         <h1>Admin Dashboard</h1>
         <p>
           Welcome to the admin dashboard. Here you can manage Appointments,
@@ -119,7 +120,7 @@ export default function Admin() {
             </div>
             <div className={Styles.TotalEarningsBox}>
               <p>Total Earnings</p>
-              <p>${calculateTotalEarnings(completedAppointments)}</p>
+              <p>${calculateTotalEarnings(appointments)}</p>
             </div>
             <div className={Styles.PendingEarningsBox}>
               <p>Pending Earnings</p>
@@ -129,7 +130,6 @@ export default function Admin() {
               <p>Upcoming Earnings</p>
               <p>${calculateTotalEarnings(confirmedAppointments)}</p>
             </div>
-            
             <div className={Styles.TotalStylistsBox}>
               <p>Total Stylists</p>
               <p>{stylists.length}</p>
@@ -146,7 +146,7 @@ export default function Admin() {
           >
             <div className={Styles.PendingIcon}>
               <img
-                src={require("../../assets/time capsule white.png")}
+                src={require("../../assets/time-caspule-start-svgrepo-com.png")}
                 alt="Pending Icon"
                 className={Styles.iconImage}
               />
@@ -162,7 +162,7 @@ export default function Admin() {
           >
             <div className={Styles.ConfirmedIcon}>
               <img
-                src={require("../../assets/tick white.png")}
+                src={require("../../assets/tick-circle-svgrepo-com.png")}
                 alt="Confirmed Icon"
                 className={Styles.iconImage}
               />
@@ -178,7 +178,7 @@ export default function Admin() {
           >
             <div className={Styles.CanceledIcon}>
               <img
-                src={require("../../assets/cancel white.png")}
+                src={require("../../assets/cancel-svgrepo-com.png")}
                 alt="Canceled Icon"
                 className={Styles.iconImage}
               />
@@ -194,7 +194,7 @@ export default function Admin() {
           >
             <div className={Styles.CompletedIcon}>
               <img
-                src={require("../../assets/square-svgrepo-com.png")} // Assuming a completed icon
+                src={require("../../assets/square-svgrepo-com.png")}
                 alt="Completed Icon"
                 className={Styles.iconImage}
               />

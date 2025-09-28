@@ -1,154 +1,200 @@
-.admin{
-    display: flex;
-    width: 100%;
+.admin {
+  display: flex;
+  width: 100%;
 }
-.adminContainer{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    padding: 20px;
-    box-sizing: border-box;
+
+.adminContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 20px;
+  padding-left: 60px; /* Space for the navbar */
+  box-sizing: border-box;
+  margin-top: 3rem; /* Default margin to clear the collapsed navbar */
+  transition: margin-top 0.4s ease-out; /* Smooth transition for margin adjustment */
 }
-.appointmentsoverview{
-    display: flex;
-    justify-content: space-evenly;
-    margin-top: 20px;
-    gap: 20px;
-    flex-wrap: wrap;
-    width: 100%;
+
+.AdminNavbar:hover ~ .admin .adminContainer {
+  margin-top: 0; /* Remove margin when navbar is hovered, letting content adjust */
 }
+
+/* Existing styles for appointmentsoverview, etc. */
+.appointmentsoverview {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 20px;
+  gap: 20px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
 .PendingAppointments,
 .ConfirmedAppointments,
 .CanceledAppointments,
-.CompletedAppointments
-{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-radius: 5px;
-    padding: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
+.CompletedAppointments {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 }
-.PendingAppointments{
-    background: linear-gradient(90deg,rgb(249, 190, 42) 0%, rgb(253, 172, 21) 61%, rgb(253, 153, 0) 100%);
-   width: 250px;
+
+.PendingAppointments {
+  background: linear-gradient(
+    90deg,
+    rgb(249, 190, 42) 0%,
+    rgb(253, 172, 21) 61%,
+    rgb(253, 153, 0) 100%
+  );
+  width: 250px;
 }
-.ConfirmedAppointments{
-    background: linear-gradient(90deg,rgb(66, 230, 118) 0%, rgb(51, 161, 79) 61%,rgb(33, 97, 41) 100%);
-   width: 250px;
+
+.ConfirmedAppointments {
+  background: linear-gradient(
+    90deg,
+    rgb(66, 230, 118) 0%,
+    rgb(51, 161, 79) 61%,
+    rgb(33, 97, 41) 100%
+  );
+  width: 250px;
 }
-.CanceledAppointments{
-    background: linear-gradient(90deg,rgb(251, 60, 59) 0%,rgb(202, 48, 47) 61%, rgb(157, 36, 36) 100%);
-    width: 250px;
+
+.CanceledAppointments {
+  background: linear-gradient(
+    90deg,
+    rgb(251, 60, 59) 0%,
+    rgb(202, 48, 47) 61%,
+    rgb(157, 36, 36) 100%
+  );
+  width: 250px;
 }
 
 .ConfirmedIcon,
-.CanceledIcon{
-    color: white;
-    display: flex;
-    border-radius: 50%;
-    justify-content: center;
-    align-items: center;
+.CanceledIcon {
+  color: white;
+  display: flex;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
 }
-.iconImage{
-    width: 40px;
-    height: 40px;
+
+.iconImage {
+  width: 40px;
+  height: 40px;
 }
-.appointmentsTable{
-    margin-top: 20px;
-    width: 100%;
-    overflow-x: auto;
+
+.appointmentsTable {
+  margin-top: 20px;
+  width: 100%;
+  overflow-x: auto;
 }
-.appointmentsTable table{
-    width: 100%;
-    border-collapse: collapse;
+
+.appointmentsTable table {
+  width: 100%;
+  border-collapse: collapse;
 }
+
 .appointmentsTable th,
-.appointmentsTable td{
-    padding: 12px 15px;
-    
+.appointmentsTable td {
+  padding: 12px 15px;
 }
-.appointmentsTable th{
-    background: var(--tertiary-color);
-    text-align: left;
+
+.appointmentsTable th {
+  background: var(--tertiary-color);
+  text-align: left;
 }
+
 /* .appointmentsTable tr:nth-child(odd){
     background: var(--quaternary-color);
 }
 .appointmentsTable tr:nth-child(even){
     background: var(--secondary-color);
 } */
-.appointmentsTable tr:hover{
-    background: var(--secondary-color);
-    cursor: pointer;
+.appointmentsTable tr:hover {
+  background: var(--secondary-color);
+  cursor: pointer;
 }
-.Pending{
-    
-    color: rgb(255, 140, 0);
-    font-weight: bold;
+
+.Pending {
+  color: rgb(255, 140, 0);
+  font-weight: bold;
 }
-.Confirmed{
-    color: rgb(66, 230, 118);
-    font-weight: bold;
+
+.Confirmed {
+  color: rgb(66, 230, 118);
+  font-weight: bold;
 }
-.Canceled{
-    color: rgb(251, 60, 59);
-    font-weight: bold;
+
+.Canceled {
+  color: rgb(251, 60, 59);
+  font-weight: bold;
 }
-.Completed{
-    color: rgb(0, 123, 255);
-    font-weight: bold;
+
+.Completed {
+  color: rgb(0, 123, 255);
+  font-weight: bold;
 }
-.appointmentsOverviewTitle{
-    margin-top: 20px;
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center;
+
+.appointmentsOverviewTitle {
+  margin-top: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
 }
-.analyticsSection{
-    margin-top: 20px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-sizing: border-box;
-    padding: 20px;
-    background: var(--primary-color);
-    border-radius: 5px;
-    gap: 20px;
+
+.analyticsSection {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 20px;
+  background: var(--primary-color);
+  border-radius: 5px;
+  gap: 20px;
 }
-.analytics{
-    display: flex;
-    
-    justify-content: space-evenly;
-    width: 100%;
-    gap: 20px;
-    flex-wrap: wrap;
+
+.analytics {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  gap: 20px;
+  flex-wrap: wrap;
 }
-.analytics div{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: var(--background-color);
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    width: 200px;
-    height: 100px;
-    text-align: center;
-    gap: 10px;
+
+.analytics div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--background-color);
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 200px;
+  height: 100px;
+  text-align: center;
+  gap: 10px;
 }
+
 .CompletedAppointments {
-    background: linear-gradient(90deg, rgb(0, 123, 255) 0%, rgb(0, 82, 179) 61%, rgb(0, 41, 89) 100%);
-    width: 250px;
+  background: linear-gradient(
+    90deg,
+    rgb(0, 123, 255) 0%,
+    rgb(0, 82, 179) 61%,
+    rgb(0, 41, 89) 100%
+  );
+  width: 250px;
 }
+
 .CompletedIcon {
-    color: white;
-    display: flex;
-    border-radius: 50%;
-    justify-content: center;
-    align-items: center;
+  color: white;
+  display: flex;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
 }

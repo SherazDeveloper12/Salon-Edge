@@ -2,3 +2,13 @@
     display: flex;
     background-color: rgb(240, 240, 241);
 }
+.Bookings_container{
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+     padding-left: 60px; /* Space for the navbar */
+    margin-top: 3rem; /* Default margin to clear the collapsed navbar */
+    transition: margin-top 0.4s ease-out; /* Smooth transition for margin adjustment */
+
+
+}

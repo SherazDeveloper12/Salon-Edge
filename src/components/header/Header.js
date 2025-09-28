@@ -17,7 +17,7 @@ export default function Header() {
       <nav className={Styles.nav}>
         <div onClick={() => setIsMenuOpen(!isMenuOpen)} className={Styles.MenuIcon}>
           <img
-            src={require("../../assets/three-lines-menu-svgrepo-com.png")}
+            src={require("../../assets/admin dashboard.png")}
             alt="Menu Icon"
           />
         </div>
