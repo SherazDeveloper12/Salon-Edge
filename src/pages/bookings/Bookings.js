@@ -139,7 +139,7 @@ export default function Bookings() {
       date: selectedDate,
       time: selectedTime,
       user: user,
-      createdAt: new Date().toISOString()
+      createdAt: new Date().toISOString(),
     };
     console.log("Booking Details:", bookingDetails);
     // Here you would typically send bookingDetails to your backend API

@@ -58,11 +58,11 @@ export default function Navigation() {
     },
     {
       path:"/signup",
-      element:  <Signup/> 
+      element: <PublicRoute><Signup/></PublicRoute>
     },
     {
       path:"/login",
-      element: <Signin/> 
+      element:<PublicRoute><Signin/></PublicRoute>
     },
   ])
   return (

@@ -65,6 +65,8 @@ export const updateAppointment = createAsyncThunk(
   'appointments/updateAppointment',
   async ({ id, appointmentData }, { rejectWithValue }) => {
     try {
+      console.log('Update Appointment Thunk Called'); // Debugging log
+      console.log('Updating Appointment ID:', id, 'with data:', appointmentData); // Debugging log
       const appointmentRef = doc(db, 'appointments', id);
       await updateDoc(appointmentRef, appointmentData);
       const updatedAppointment = { id, ...appointmentData };

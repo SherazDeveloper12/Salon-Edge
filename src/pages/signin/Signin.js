@@ -1,12 +1,16 @@
 import Styles from './signin.module.css';
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
+import { getCurrentUser } from '../../features/slices/authslice';
+import Loader from '../../components/loader/Loader';
+import { useEffect } from 'react';
 import { useState } from 'react';
 import {login} from '../../features/slices/authslice'
 import { useDispatch } from 'react-redux';
 export default function Signin() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
   const dispatch = useDispatch()
   const handleSubmit = () => {
     // Handle sign-in logic here
@@ -24,7 +28,7 @@ export default function Signin() {
   return (
     <div className={Styles.signin}>
       <Header />
-      <div className={Styles.Signin}>
+     <div className={Styles.Signin}>
        <div className={Styles.signinContainer}>
        <h1 className={Styles.signinTitle}>Sign In</h1>
        <input 
@@ -46,6 +50,7 @@ export default function Signin() {
         <button onClick={handleSubmit} className={Styles.signinButton}>Sign In</button>
        </div>
       </div>
+      
       <Footer />
     </div>
   );

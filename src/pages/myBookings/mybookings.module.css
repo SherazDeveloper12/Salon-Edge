@@ -1,0 +1,340 @@
+.myBookings {
+  padding: 20px;
+  background-color: #1a1a1a;
+  min-height: 100vh;
+  color: white;
+}
+
+.Navbar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.Navbar ul {
+  list-style: none;
+  display: flex;
+  background: #333;
+  border-radius: 5px;
+  padding: 5px;
+  flex-wrap: wrap;
+}
+
+.Navbar ul li {
+  color: white;
+  cursor: pointer;
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin: 0 5px;
+}
+
+.Navbar ul li:hover {
+  background: #4a90e2;
+}
+
+.link {
+  text-decoration: none;
+  color: white;
+}
+.PendingTab {
+  color: #ffae00 !important;
+}
+
+.CompletedTab {
+   color: #2c84f8 !important;
+}
+
+.ConfirmedTab {
+ 
+  color: #00cc00 !important;
+}
+
+.CanceledTab {
+  color: #ff3333 !important;
+}
+.active {
+  background: #4a90e2;
+  font-weight: 600;
+  color: white !important;
+}
+
+.BookingContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  width: 100%;
+  gap: 20px;
+}
+
+.BookingContentHero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: fit-content;
+  gap: 20px;
+  background: #222;
+  box-shadow: 0 12px 24px #081a818a;
+  padding: 10px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+
+.BookingContentHeroHeading {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.BookingContentHeroHeading h2 {
+  color: #f4cb04;
+}
+
+.BookingContentHeroText {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 5px;
+}
+
+.BookingContentHeroText p {
+  color: #f4cb04;
+  font-weight: 500;
+}
+
+.CardHeaderNav {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.CardHeaderNav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.CardHeaderNav ul li {
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.CardHeaderNav ul .active {
+  background: #4a90e2;
+}
+
+.CardHeaderNav ul .pending {
+  color: #ffae00;
+}
+
+.CardHeaderNav ul .completed {
+  color: #00cc00;
+}
+
+.CardHeaderNav ul .canceled {
+  color: #ff3333;
+}
+
+.BookingContentCards {
+  align-self: flex-start;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: row;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.bookingCard {
+  display: flex;
+  flex-direction: column;
+  
+  border-radius: 5px;
+  padding: 10px;
+  background-color: #222;
+  color: white;
+  gap: 5px;
+}
+.PendingbookingCard {
+  border-left: 4px solid #ffae00;
+}
+
+.ConfirmedbookingCard {
+  border-left: 4px solid #00cc00;
+}
+
+.CanceledbookingCard {
+  border-left: 4px solid #ff3333;
+}
+
+.CompletedbookingCard {
+  border-left: 4px solid #2c84f8;
+}
+
+.Pending {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 500;
+}
+
+.statusIcon {
+  font-size: 1.2em;
+}
+
+.Status {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  
+}
+.PendingStatus {
+  color: #ffae00;
+}
+
+.ConfirmedStatus {
+  color: #00cc00;
+}
+
+.CanceledStatus {
+  color: #ff3333;
+}
+
+.CompletedStatus {
+  color: #2c84f8;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.messageBtn {
+  background: #00cc00;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+.callBtn {
+  background: #ffae00;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+.CancelBtn {
+  background: #ff3333;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+.BookAgainBtn {
+  background: #2c84f8;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+.messageBtn:hover, .callBtn:hover, .viewBtn:hover {
+  opacity: 0.8;
+}
+.StatusBar{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+.PendingStatusBar {
+  background-color: #ffae00c9;
+  color: black;
+}
+.ConfirmedStatusBar {
+  background-color: #00cc00d2;
+  color: white;
+}
+.CanceledStatusBar {
+  background-color: #ff3333d2;
+  color: white;
+}
+.CompletedStatusBar {
+  background-color: #2c84f8b9;
+  color: white;
+}
+.cardHeader{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+.LoaderContainer {
+  width: 100%;
+  height: 200px; /* Adjust height as needed */
+}
+.ProfileContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 20px;
+  margin-top: 20px;
+}
+.profileField {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 400px;
+  gap: 5px;
+}
+.profileField label {
+  font-weight: 500;
+}
+.profileField input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #333;
+  color: white;
+}
+.saveBtn {
+  background: #00cc00;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+.cancelBtn {
+  background: #ff3333;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+

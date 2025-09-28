@@ -2,17 +2,19 @@ import Styles from './signup.module.css';
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
 import { useState } from 'react';
-import {signup} from '../../features/slices/authslice';
 
-import { useDispatch } from 'react-redux';
+import {signup} from '../../features/slices/authslice';
+import Loader from '../../components/loader/Loader';
+import { useDispatch, useSelector } from 'react-redux';
 export default function SignUp() {
   const dispatch = useDispatch();
    const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+ 
+   
  const clickhandler = () => {
   let user = { name, email, password };
-
     // Handle sign-up logic here
     console.log('User Created', user);
     dispatch(signup(user));
@@ -22,10 +24,11 @@ export default function SignUp() {
     setPassword('');
    
   }
+ 
   return (
     <div className={Styles.signup}>
       <Header />
-      <div className={Styles.Signup}>
+  <div className={Styles.Signup}>
         <div className={Styles.signupContainer}>
           <h1 className={Styles.signupTitle}>Create an Account</h1>
           <input
@@ -57,6 +60,7 @@ export default function SignUp() {
           </button>
         </div>
       </div>
+      
       <Footer />
     </div>
   );
