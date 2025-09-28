@@ -1,94 +1,192 @@
-.Services{
-    display: flex;
-    background-color: var(--background-color-light);
+.Services {
+  display: flex;
+  background-color: var(--background-color-light);
 }
-.Services_container{
-    padding: 20px;
-    width: 100%;
-    box-sizing: border-box;
-     padding-left: 60px; /* Space for the navbar */
+
+.Services_container {
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+  padding-left: 60px; /* Space for the navbar */
 }
-.Services_TopBox{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
+
+.Services_TopBox {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
-.AddServiceButton{
-    padding: 10px 20px;
-     background: var(--secondary-color);
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
+
+.AddServiceButton {
+  padding: 10px 20px;
+  background: var(--secondary-color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
 }
-.AddServiceButton:hover{
-    background: var(--primary-color);
-    color: var(--text-color);
+
+.AddServiceButton:hover {
+  background: var(--primary-color);
+  color: var(--text-color);
 }
-.AddServiceForm{
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-bottom: 20px;
+
+.AddServiceForm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
 }
-.FormGroup{
-    width: 60%;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+
+.FormGroup {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
-.Label{
-    margin-bottom: 5px;
-    font-weight: bold;
+
+.Label {
+  margin-bottom: 5px;
+  font-weight: bold;
 }
-.Input, .Textarea {
-    background: var(--background-color-light);
-    padding: 10px;
-    border: 1px solid var(--text-color);
-    border-radius: 5px;
-    font-size: 16px;
-    color: var(--text-color);
-}
-.Input:focus, .Textarea:focus {
- background: var(--secondary-color);
-    outline: none;
-}
+
+.Input,
 .Textarea {
-    resize: vertical;
-    min-height: 100px;
+  background: var(--background-color-light);
+  padding: 10px;
+  border: 1px solid var(--text-color);
+  border-radius: 5px;
+  font-size: 16px;
+  color: var(--text-color);
 }
-.SubmitButton{
-    padding: 10px 20px;
-    background: var(--secondary-color);
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    align-self: flex-start;
+
+.Input:focus,
+.Textarea:focus {
+  background: var(--secondary-color);
+  outline: none;
 }
-.SubmitButton:hover{
-        background: var(--primary-color);
-    color: var(--text-color);
+
+.Textarea {
+  resize: vertical;
+  min-height: 100px;
 }
-.Buttons{
-    display: flex;
-    gap: 10px;
+
+.SubmitButton {
+  padding: 10px 20px;
+  background: var(--secondary-color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  align-self: flex-start;
 }
-.CancelButton{
-    padding: 10px 20px;
-    background: var(--secondary-color);
-    color: var(--text-color);
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    align-self: flex-start;
+
+.SubmitButton:hover {
+  background: var(--primary-color);
+  color: var(--text-color);
 }
-.CancelButton:hover{
-     background: red;
-    color: var(--text-color);
+
+.Buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.CancelButton {
+  padding: 10px 20px;
+  background: var(--secondary-color);
+  color: var(--text-color);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  align-self: flex-start;
+}
+
+.CancelButton:hover {
+  background: red;
+  color: var(--text-color);
+}
+
+/* Updated Styles for ServiceItems and ServiceItem with Buttons */
+.ServicesList {
+  margin-top: 20px;
+}
+
+.ServiceItems {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive grid */
+  gap: 20px; /* Space between items */
+  padding: 10px;
+}
+
+.ServiceItem {
+  background: var(--background-color); /* Light background for contrast */
+  border: 1px solid var(--text-color-light); /* Subtle border */
+  border-radius: 8px; /* Rounded corners */
+  padding: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover effect */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%; /* Ensure full height for consistent layout */
+}
+
+.ServiceItem:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+.ServiceItem h3 {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--text-color-dark);
+  margin-bottom: 10px;
+}
+
+.ServiceItem p {
+  font-size: 16px;
+  color: var(--text-color);
+  margin: 5px 0;
+  line-height: 1.5;
+}
+
+.ServiceButtons {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.UpdateButton {
+  padding: 8px 15px;
+  background: var(--secondary-color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  flex: 1;
+}
+
+.UpdateButton:hover {
+  background: var(--primary-color);
+  color: var(--text-color);
+}
+
+.DeleteButton {
+  padding: 8px 15px;
+  background: #ff4444; /* Red for delete */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  flex: 1;
+}
+
+.DeleteButton:hover {
+  background: #cc0000; /* Darker red on hover */
 }

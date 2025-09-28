@@ -46,6 +46,7 @@ export const deleteService = createAsyncThunk(
 export const updateService = createAsyncThunk(
   'services/updateService',
   async ({ id, serviceData }) => {
+    console.log("Updating service with ID:", id, "and data:", serviceData); // Debugging log
     const serviceRef = doc(db, 'services', id);
     await updateDoc(serviceRef, serviceData);
     return { id, ...serviceData };
