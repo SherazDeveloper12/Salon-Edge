@@ -4,8 +4,11 @@ import { useState, useRef } from "react";
 import { useDispatch } from 'react-redux';
 import { addStylist, fetchStylists } from "../../../../features/slices/stylistSlice";
 import { useEffect } from "react";
-
+import { useSelector } from "react-redux";
+import {deleteStylist, updateStylist} from "../../../../features/slices/stylistSlice";
 export default function Stylists() {
+   const { stylists, stylistStatus, stylistError } = useSelector((state) => state.stylists);
+
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     stylistName: '',
@@ -18,7 +21,8 @@ export default function Stylists() {
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [isImageUploading, setIsImageUploading] = useState(false);
   const fileInputRef = useRef(null);
-
+  const [isEditing, setIsEditing] = useState(false);
+  const [editingStylistId, setEditingStylistId] = useState(null);
   useEffect(() => {
     dispatch(fetchStylists());
   }, [dispatch]);
@@ -75,9 +79,58 @@ export default function Stylists() {
       status: 'Available',
       daysAvailable: [],
       imageUrl: ''
+
     });
+
   
   };
+  const handleUpdateStylist = (stylist) => {
+    // Implement update functionality here
+    console.log("Update Stylist:", stylist);
+    // You can open a modal or navigate to an update page with stylist details
+    // open add form with existing data
+    setFormData({
+      stylistName: stylist.stylistName,
+      description: stylist.description,
+      rating: stylist.rating,
+      status: stylist.status,
+      daysAvailable: stylist.daysAvailable,
+      imageUrl: stylist.imageUrl
+    });
+    setIsFormVisible(true);
+    setIsEditing(true);
+    setEditingStylistId(stylist.id);
+  }
+  const handleDeleteStylist = (stylistId) => {
+    // Implement delete functionality here
+    console.log("Delete Stylist ID:", stylistId);
+    // You can dispatch a delete action here
+    dispatch(deleteStylist(stylistId));
+  }
+
+  const updatingStylist = () => {
+    let  updatedStylistData = {
+      ...formData,
+    
+    }
+    console.log("updatedStylistData", updatedStylistData);
+    dispatch(updateStylist({id: editingStylistId, stylistData: updatedStylistData}));
+    // Clear form and states
+    setFormData({
+      stylistName: '',
+      description: '',
+      rating: '',
+      status: 'Available',
+      daysAvailable: [],
+      imageUrl: ''  
+
+    }
+    );;
+    setIsFormVisible(false);
+    setIsEditing(false);
+    setEditingStylistId(null);
+  }
+  
 
   return (
     <div className={Styles.Stylists}>
@@ -89,7 +142,7 @@ export default function Stylists() {
         </div>
         {isFormVisible && (
           <div className={Styles.AddStylistForm}>
-            <h2>Add New Stylist</h2>
+            <h2>{isEditing ? "Edit Stylist" : "Add New Stylist"}</h2>
             <div className={Styles.ImgDetailContainer}>
               <div className={Styles.ImgContainer} onClick={handleImageClick}>
                 <img
@@ -180,11 +233,50 @@ export default function Stylists() {
               ))}
             </div>
             <div className={Styles.Buttons}>
-              <button onClick={handleAddStylist} type="button" className={Styles.SubmitButton}>Add Stylist</button>
+              <button onClick={isEditing? updatingStylist : handleAddStylist} type="button" className={Styles.SubmitButton}>{isEditing? "Update Stylist" : "Add Stylist"}</button>
               <button onClick={() => setIsFormVisible(false)} type="button" className={Styles.CancelButton}>Cancel</button>
             </div>
           </div>
         )}
+        <div className={Styles.ExistingStylists}>
+          <h2>Existing Stylists</h2>
+          <div className={Styles.StylistItems}>
+            {stylists && stylists.length > 0 ? (
+              stylists.map((stylist) => (
+                <div key={stylist.id} className={Styles.StylistItem}>
+                  <div className={Styles.StylistImageContainer}>
+                    <img
+                      src={stylist.imageUrl || require("../../../../assets/avatar-default-symbolic-svgrepo-com.png")} // Default image path, adjust as needed
+                      alt={stylist.stylistName}
+                      className={Styles.StylistImage}
+                    />
+                  </div>
+                  <h3>{stylist.stylistName}</h3>
+                  <p>{stylist.description}</p>
+                  <p>Rating: {stylist.rating}</p>
+                  <p >Status: {stylist.status}</p>
+                  <p>Days Available: {stylist.daysAvailable.join(", ")}</p>
+                  <div className={Styles.StylistButtons}>
+                    <button
+                      onClick={() => handleUpdateStylist(stylist)}
+                      className={Styles.UpdateButton}
+                    >
+                      Update 
+                    </button>
+                    <button
+                      onClick={() => handleDeleteStylist(stylist.id)}
+                      className={Styles.DeleteButton}
+                    >
+                      Delete 
+                    </button>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <p>No stylists available. Please add a stylist.</p>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );
