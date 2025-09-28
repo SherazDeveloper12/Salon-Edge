@@ -8,6 +8,7 @@ import Signup from '../pages/signup/SignUp';
 import Signin from '../pages/signin/Signin';
 import Contact from '../pages/contact/Contact';
 import Admin from '../pages/admin/Admin';
+import MyBookings from '../pages/myBookings/MyBookings';
 import AdminServices from '../pages/admin/adminpages/services/Services';
 import AdminBookings from '../pages/admin/adminpages/bookings/Booking';
 import Stylists from '../pages/admin/adminpages/stylists/Stylists';
@@ -34,6 +35,10 @@ export default function Navigation() {
     {
       path:"/services",
       element:<Services/>
+    },
+    {
+      path:"/mybookings",
+      element:<MyBookings/>
     },
     {
       path:"/admin",

@@ -43,7 +43,7 @@ export default function Header() {
         </ul>
               {(user)? <>
             <Link to="/" ><button onClick={handleLogout} className={Styles.login}>Logout</button></Link>
-            <Link to="/profile"><button className={Styles.profilebtn}>  <p> {user.name} </p>    </button></Link>
+            <Link to="/mybookings"><button className={Styles.profilebtn}>  <p> {user.name}'s Bookings </p>    </button></Link>
              </>:  
              <div className={Styles.SidebarAuthButtons}>
           <Link to="/login" className={Styles.SidebarloginButton}><button>Login</button></Link>
@@ -92,7 +92,7 @@ export default function Header() {
         <div className={Styles.authButtons}>
           {(user)? <>
             <Link to="/"  ><button onClick={handleLogout} className={Styles.login}>Logout</button></Link>
-            <Link to="/profile"><button className={Styles.profilebtn}>  <p> {user.name} </p>    </button></Link>
+            <Link to="/mybookings"><button className={Styles.profilebtn}>  <p> {user.name}'s Bookings </p>    </button></Link>
              </>:<>
           <Link to="/login" className={Styles.loginButton}><button>Login</button></Link>
           <Link to="/signup" className={Styles.signupButton}><button>Sign Up</button></Link>
