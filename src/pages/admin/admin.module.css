@@ -198,3 +198,351 @@
   justify-content: center;
   align-items: center;
 }
+.appointmentsTable tfoot {
+  background: var(--tertiary-color);
+  font-weight: bold;
+  color: white;
+
+}
+.appointmentsTable tfoot tr:hover {
+  background: var(--tertiary-color);
+  cursor: default;
+}
+.pagination {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.pagination button {
+  padding: 8px 12px;
+  border: none;
+  background: var(--tertiary-color);
+  color: white;
+  cursor: pointer;
+  border-radius: 3px;
+}
+.pagination button:disabled {
+  background: var(--quaternary-color);
+  cursor: not-allowed;
+}
+.pagination button:hover:not(:disabled) {
+  background: var(--secondary-color);
+}
+.ControlRow td {
+  box-sizing: border-box;
+  width: 100%;
+}
+@media (max-width: 768px) {
+  .appointmentsoverview {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .PendingAppointments,
+  .ConfirmedAppointments,
+  .CanceledAppointments,
+  .CompletedAppointments {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .analytics {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .analytics div {
+    width: 100%;
+    max-width: 300px;
+  }
+
+}
+/* Responsive adjustments for smaller screens */
+@media (max-width: 600px) {
+  .adminContainer {
+    padding: 10px;
+    padding-left: 50px; /* Adjust space for the navbar */
+  }
+
+  .appointmentsTable th,
+  .appointmentsTable td {
+    padding: 8px 10px;
+  }
+
+  .appointmentsOverviewTitle {
+    font-size: 20px;
+  }
+
+  .PendingAppointments,
+  .ConfirmedAppointments,
+  .CanceledAppointments,
+  .CompletedAppointments {
+    width: 100%;
+    max-width: 250px;
+    padding: 8px;
+  }
+
+  .analytics div {
+    width: 100%;
+    max-width: 250px;
+    padding: 15px;
+    height: auto;
+  }
+  .iconImage {
+    width: 30px;
+    height: 30px;
+  }
+  .ConfirmedIcon, .CanceledIcon, .CompletedIcon {
+    width: 30px;
+    height: 30px;
+  }
+  .analyticsSection {
+    padding: 15px;
+  }
+  .appointmentsoverview {
+    gap: 15px;
+  }
+  .analytics {
+    gap: 15px;
+  }
+  .pagination button {
+    padding: 6px 10px;
+  }
+  .appointmentsTable {
+    font-size: 14px;
+  }
+  .appointmentsTable th, .appointmentsTable td {
+    padding: 10px 8px;
+  }
+  .appointmentsTable tfoot {
+    font-size: 14px;
+  }
+  .appointmentsTable tfoot tr {
+    padding: 10px 8px;
+  }
+  .appointmentsTable tfoot tr:hover {
+    background: var(--tertiary-color);
+    cursor: default;
+  }
+  .appointmentsTable th {
+    font-size: 14px;
+  }
+  .appointmentsTable td {
+    font-size: 14px;
+  }
+  .appointmentsOverviewTitle {
+    font-size: 18px;
+  }
+  .PendingAppointments, .ConfirmedAppointments, .CanceledAppointments, .CompletedAppointments {
+    width: 100%;
+    max-width: 200px;
+    padding: 6px;
+  }
+  .analytics div {
+    width: 100%;
+    max-width: 200px;
+    padding: 10px;
+    height: auto;
+  }
+  .iconImage {
+    width: 25px;
+    height: 25px;
+  }
+  .ConfirmedIcon, .CanceledIcon, .CompletedIcon {
+    width: 25px;
+    height: 25px;
+  }
+  .analyticsSection {
+    padding: 10px;
+  }
+  .appointmentsoverview {
+    gap: 10px;
+  }
+  .analytics {
+    gap: 10px;
+  }
+  .pagination button {
+    padding: 5px 8px;
+  }
+  .appointmentsTable {
+    font-size: 12px;
+  }
+  .appointmentsTable th, .appointmentsTable td {
+    padding: 8px 6px;
+  }
+
+  .appointmentsTable tfoot {
+    font-size: 12px;
+  }
+  .appointmentsTable tfoot tr {
+    padding: 8px 6px;
+  }
+  .appointmentsTable tfoot tr:hover {
+    background: var(--tertiary-color);
+    cursor: default;
+  }
+  .appointmentsTable th {
+    font-size: 12px;
+  }
+  .appointmentsTable td {
+    font-size: 12px;
+  }
+
+  .appointmentsOverviewTitle {
+    font-size: 16px;
+  }
+  .PendingAppointments, .ConfirmedAppointments, .CanceledAppointments, .CompletedAppointments {
+    width: 100%;
+    max-width: 150px;
+    padding: 4px;
+  }
+  .analytics div {
+    width: 100%;
+    max-width: 150px;
+    padding: 8px;
+    height: auto;
+  }
+  .iconImage {
+    width: 20px;
+    height: 20px;
+  }
+  .ConfirmedIcon, .CanceledIcon, .CompletedIcon {
+    width: 20px;
+    height: 20px;
+  }
+  .analyticsSection {
+    padding: 8px;
+  }
+  .appointmentsoverview {
+    gap: 8px;
+  }
+}
+/* Responsive adjustments for more smaller screens */
+@media (max-width: 400px) {
+  .adminContainer {
+    padding: 5px;
+    padding-left: 50px; /* Further adjust space for the navbar */
+  }
+  .appointmentsTable th, .appointmentsTable td {
+    padding: 6px 4px;
+  }
+  .appointmentsOverviewTitle {
+    font-size: 14px;
+  }
+  .PendingAppointments, .ConfirmedAppointments, .CanceledAppointments, .CompletedAppointments {
+    width: 100%;
+    max-width: 120px;
+    padding: 3px;
+  }
+  .analytics div {
+    width: 100%;
+    max-width: 120px;
+    padding: 6px;
+    height: auto;
+  }
+  .iconImage {
+    width: 18px;
+    height: 18px;
+  }
+  .ConfirmedIcon, .CanceledIcon, .CompletedIcon {
+    width: 18px;
+    height: 18px;
+  }
+  .analyticsSection {
+    padding: 6px;
+  }
+  .appointmentsoverview {
+    gap: 6px;
+  }
+  .analytics {
+    gap: 6px;
+  }
+  .pagination button {
+    padding: 4px 6px;
+    font-size: 12px;
+  }
+  .appointmentsTable {
+    font-size: 10px;
+  }
+  .appointmentsTable th, .appointmentsTable td {
+    padding: 6px 4px;
+  }
+
+  .appointmentsTable tfoot {
+    font-size: 10px;
+  }
+  .appointmentsTable tfoot tr {
+    padding: 6px 4px;
+  }
+  .appointmentsTable tfoot tr:hover {
+    background: var(--tertiary-color);
+    cursor: default;
+  }
+  .appointmentsTable th {
+    font-size: 10px;
+  }
+  .appointmentsTable td {
+    font-size: 10px;
+  }
+  .appointmentsOverviewTitle {
+    font-size: 12px;
+  }
+  .PendingAppointments, .ConfirmedAppointments, .CanceledAppointments, .CompletedAppointments {
+    width: 100%;
+    max-width: 100px;
+    padding: 2px;
+  }
+  .analytics div {
+    width: 100%;
+    max-width: 100px;
+    padding: 4px;
+    height: auto;
+  }
+  .iconImage {
+    width: 16px;
+    height: 16px;
+  }
+  .ConfirmedIcon, .CanceledIcon, .CompletedIcon {
+    width: 16px;
+    height: 16px;
+  }
+  .analyticsSection {
+    padding: 4px;
+  }
+  .appointmentsoverview {
+    gap: 4px;
+  }
+  .analytics {
+    gap: 4px;
+  }
+  .pagination button {
+    padding: 3px 5px;
+    font-size: 10px;
+  }
+  .appointmentsTable {
+    font-size: 8px;
+  }
+  .appointmentsTable th, .appointmentsTable td {
+    padding: 4px 3px;
+  }
+  .appointmentsTable tfoot {
+    font-size: 8px;
+  }
+  .appointmentsTable tfoot tr {
+    padding: 4px 3px;
+  }
+  .appointmentsTable tfoot tr:hover {
+    background: var(--tertiary-color);
+    cursor: default;
+  }
+  .appointmentsTable th {
+    font-size: 8px;
+  }
+  .appointmentsTable td {
+    font-size: 8px;
+  }
+  .appointmentsOverviewTitle {
+    font-size: 10px;
+  }
+}

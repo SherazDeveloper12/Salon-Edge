@@ -60,7 +60,6 @@ export default function Admin() {
     appointments,
   ]);
 
-  const showAppointments = displayedAppointments.slice(0, 10); // Show only first 10 appointments
 
   // Handle filter clicks with toggle
   const handlePendingClick = () => {
@@ -94,6 +93,24 @@ export default function Admin() {
         0
       )
       .toFixed(2);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+  const totalPages = Math.ceil(displayedAppointments.length / itemsPerPage);
+  const handlePagination = (direction) => {
+    if (direction === "next" && currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+    if (direction === "prev" && currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  // Paginate displayed appointments
+  const paginatedAppointments = displayedAppointments.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+  const showAppointments = paginatedAppointments;
 
   return (
     <div className={Styles.admin}>
@@ -237,6 +254,46 @@ export default function Admin() {
                   </td>
                 </tr>
               ))}
+              <tr>
+                <td colSpan="4" className={Styles.total}>
+                  Total
+                </td>
+                <td>
+                  $
+                  {showAppointments
+                    .reduce(
+                      (sum, appointment) =>
+                        sum +
+                        appointment.services.reduce(
+                          (s, service) => s + parseFloat(service.Price || 0),
+                          0
+                        ),
+                      0
+                    )
+                    .toFixed(2)}
+                </td>
+              </tr>
+             
+                <tr className={Styles.ControlRow}>
+                  <td colSpan="5" className={Styles.pagination}>
+                    <button
+                      onClick={() => handlePagination("prev")}
+                      disabled={currentPage === 1}
+                    >
+                      Previous
+                    </button>
+                    <span>
+                      Page {currentPage} of {totalPages}
+                    </span>
+                    <button
+                      onClick={() => handlePagination("next")}
+                      disabled={currentPage === totalPages}
+                    >
+                      Next
+                    </button>
+                  </td>
+                </tr>
+              
             </tbody>
           </table>
         </div>

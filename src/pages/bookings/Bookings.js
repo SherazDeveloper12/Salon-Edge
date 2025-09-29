@@ -319,6 +319,7 @@ export default function Bookings() {
               <h2>Booking Confirmed!</h2>
               <p>Thank you for your booking. We look forward to seeing you!</p>
               <div className={Styles.buttons}>
+                <Link to="/mybookings" onClick={() => setOrderConfirmed(false)} className={Styles.homeLink}><button className={Styles.homeButton}>View Your Bookings</button></Link>
                 <Link to="/" onClick={() => setOrderConfirmed(false)} className={Styles.homeLink}><button className={Styles.homeButton}>Go to Home</button></Link>
               </div>
             </div>
