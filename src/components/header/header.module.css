@@ -336,6 +336,9 @@
   .nav-links {
     display: none;
   }
+  .header{
+    height: 50px;
+  }
 }
 
 @media screen and (min-width: 480px) {

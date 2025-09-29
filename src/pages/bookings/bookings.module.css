@@ -1,6 +1,7 @@
 .Bookings {
   width: 100%;
   min-height: 70vh;
+  margin-top: 60px;
 }
 
 .servicesList {
