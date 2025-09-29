@@ -111,7 +111,7 @@ const appointmentSlice = createSlice({
       })
       .addCase(addAppointment.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.appointments.push(action.payload);
+        state.appointments.unshift(action.payload); // Changed to unshift for most recent at top
       })
       .addCase(addAppointment.rejected, (state, action) => {
         state.status = 'failed';
@@ -141,7 +141,8 @@ const appointmentSlice = createSlice({
         state.status = 'succeeded';
         const index = state.appointments.findIndex(appointment => appointment.id === action.payload.id);
         if (index !== -1) {
-          state.appointments[index] = action.payload;
+          state.appointments.splice(index, 1); // Remove old entry
+          state.appointments.unshift(action.payload); // Add updated entry at top
         }
       })
       .addCase(updateAppointment.rejected, (state, action) => {

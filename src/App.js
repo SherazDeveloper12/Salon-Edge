@@ -1,43 +1,60 @@
 import './App.css';
-import { useSelector , useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { getCurrentUser } from './features/slices/authslice';
 import Navigation from "./navigation/Navigation";
-import {fetchServices} from './features/slices/servicesSlice';
+import { fetchServices } from './features/slices/servicesSlice';
 import { fetchStylists } from './features/slices/stylistSlice';
 import { fetchAppointments } from './features/slices/appointmentSlice';
 import { useState, useEffect } from 'react';
 import Loader from './components/loader/Loader';
+import { auth } from './config/firestore'; // Adjust path to your firestore config
+import { setUser } from './features/slices/authslice'; // Import setUser action
+
 function App() {
-    const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
+
+  const { user, status } = useSelector((state) => state.auth);
+  const { services, status: serviceStatus } = useSelector((state) => state.services);
+  const { stylists, stylistStatus } = useSelector((state) => state.stylists);
+  const { appointments, appointmentStatus } = useSelector((state) => state.appointments);
 
   useEffect(() => {
-     dispatch(fetchStylists());
+    // Fetch all data when component mounts
+    dispatch(fetchStylists());
     dispatch(fetchServices());
-    dispatch(getCurrentUser(setLoading));
     dispatch(fetchAppointments());
-  }, []);
-  const { services, status, error } = useSelector((state) => state.services);
- const { stylists, stylistStatus, stylistError } = useSelector((state) => state.stylists);
- const { appointments, appointmentStatus, appointmentError } = useSelector((state) => state.appointments);
-   const {user, userStatus, userError} = useSelector((state) => state.auth);
-   
-  const dispatch = useDispatch();
- 
+    dispatch(getCurrentUser(setLoading));
 
-   console.log("User in App.js", user);
-    console.log("Dispatched fetchStylists", stylists);
-    console.log("Dispatched fetchServices", services);
-    console.log("Dispatched getCurrentUser", user);
-    console.log("Dispatched fetchAppointments", appointments);
+    // Real-time auth state listener
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        dispatch(getCurrentUser(setLoading));
+      } else {
+        dispatch(setUser(null)); // Use setUser to clear user
+        setLoading(false);
+      }
+    });
 
-   if (status === 'loading' || stylistStatus === 'loading' || appointmentStatus === 'loading' || userStatus === 'loading') return <Loader />;
+    // Cleanup listener on unmount
+    return () => unsubscribe();
+  }, [dispatch]);
+
+  console.log("User in App.js", user);
+  console.log("Dispatched fetchStylists", stylists);
+  console.log("Dispatched fetchServices", services);
+  console.log("Dispatched getCurrentUser", user);
+  console.log("Dispatched fetchAppointments", appointments);
+
+  if (status === 'loading' || serviceStatus === 'loading' || stylistStatus === 'loading' || appointmentStatus === 'loading') {
+    return <Loader />;
+  }
+
   return (
     <>
-     <Navigation /> 
+      <Navigation />
     </>
-
   );
 }
-
 
 export default App;

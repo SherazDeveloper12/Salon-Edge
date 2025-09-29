@@ -6,6 +6,7 @@ import { useSelector , useDispatch} from 'react-redux';
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const user = useSelector((state) => state.auth.User);
+  console.log("User in Header.js", user);
   const dispatch = useDispatch();
 
   const handleLogout = () => {
@@ -84,10 +85,11 @@ export default function Header() {
           <li>
           Contact
           </li></Link> 
-         <Link to="/admin" className={Styles.navLink}>
-          <li>
-          Admin
-          </li></Link> 
+        {user && user.email === "Admin@gmail.com" && (
+            <Link to="/admin" className={Styles.navLink}>
+              <li>Admin</li>
+            </Link>
+          )}
         </ul>
         <div className={Styles.authButtons}>
           {(user)? <>
