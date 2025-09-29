@@ -1,6 +1,10 @@
 .Contact{
     width: 100%;
     min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 70px;
 }
 .Contact h1{
     text-align: center;

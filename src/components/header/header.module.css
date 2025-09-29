@@ -1,8 +1,18 @@
-
+.header{
+  width: 100vw;
+  height: 60px;
+  background-color: var(--background-color);
+  color: var(--text-color);
+ 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
 .nav {
   display: flex;
   background-color: var(--background-color);
-
    padding: 1rem 2rem;
   align-items: center;
   position: sticky;

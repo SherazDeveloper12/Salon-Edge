@@ -121,3 +121,41 @@
 .heroButtonSecondary:hover {
   box-shadow: 0 4px 15px rgba(255, 255, 255, 0.6);
 }
+@media (max-width: 768px) {
+  .heroMainTitleMainText, .heroMainTitleText {
+    font-size: 2.5rem;
+  }
+
+  .heroTitle {
+    font-size: 2rem;
+  }
+
+  .heroSubtitle {
+    font-size: 1rem;
+    max-width: 90%;
+  }
+
+  .heroButtonPrimary, .heroButtonSecondary {
+    font-size: 1rem;
+    padding: 6px 12px;
+  }
+}
+@media (max-width: 480px) {
+  .heroMainTitleMainText, .heroMainTitleText {
+    font-size: 2rem;
+  }
+
+  .heroTitle {
+    font-size: 1.5rem;
+  }
+
+  .heroSubtitle {
+    font-size: 0.9rem;
+    max-width: 90%;
+  }
+
+  .heroButtonPrimary, .heroButtonSecondary {
+    font-size: 0.9rem;
+    padding: 5px 10px;
+  }
+}

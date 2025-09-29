@@ -1,7 +1,4 @@
-import Admin from "../../pages/admin/Admin";
 import { GoTriangleLeft } from "react-icons/go";
-import { ImUsers } from "react-icons/im";
-import { FaTachometerAlt } from "react-icons/fa";
 import Styles from "../adminNavbar/adminNavbar.module.css";
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
@@ -24,8 +21,6 @@ export default function AdminNavbar() {
       SetActiveTab("stylists");
     }
   }, [location.pathname]);
-
-  console.log("activetab is", ActiveTab);
 
   return (
     <div className={Styles.AdminNavbar}>

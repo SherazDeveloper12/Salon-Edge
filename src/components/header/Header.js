@@ -41,6 +41,11 @@ export default function Header() {
           <li>
           Contact
           </li></Link>
+           {user && user.email === "Admin@gmail.com" && (
+            <Link to="/admin" className={Styles.navLink}>
+              <li>Admin</li>
+            </Link>
+          )}
         </ul>
               {(user)? <>
             <Link to="/" ><button onClick={handleLogout} className={Styles.login}>Logout</button></Link>
@@ -52,9 +57,7 @@ export default function Header() {
         </div> }
            
             </div>
-            <div className='closebtn'>
-              <img src={require("../../assets/exit-hand-drawn-interface-symbol-variant-svgrepo-com.png")} width={30} onClick={() => setIsMenuOpen(false)} alt="Close Menu" />
-            </div>
+            
           </div>
         </div>
       )}

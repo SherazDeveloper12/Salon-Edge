@@ -7,8 +7,10 @@ export default function Home() {
   return (
     <div className={Styles.home}>
       <Header />
+      <main className={Styles.main}>
       <HeroSection />
       <AboutHeroSection />
+      </main>
       <Footer />
     </div>
   );

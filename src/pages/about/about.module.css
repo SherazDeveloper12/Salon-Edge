@@ -1,4 +1,13 @@
 .About{
     width: 100%;
     min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+ 
 }
