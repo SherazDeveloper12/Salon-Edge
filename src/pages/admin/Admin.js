@@ -53,11 +53,7 @@ export default function Admin() {
     }
   }, [
     activeFilter,
-    pendingAppointments,
-    confirmedAppointments,
-    canceledAppointments,
-    completedAppointments,
-    appointments,
+   
   ]);
 
 
@@ -157,9 +153,8 @@ export default function Admin() {
         <div className={Styles.appointmentsoverview}>
           <div
             onClick={handlePendingClick}
-            className={`${Styles.PendingAppointments} ${
-              activeFilter === "Pending" ? Styles.activeFilter : ""
-            }`}
+            className={`${Styles.PendingAppointments} ${activeFilter === "Pending" ? Styles.activeFilter : ""
+              }`}
           >
             <div className={Styles.PendingIcon}>
               <img
@@ -173,9 +168,8 @@ export default function Admin() {
           </div>
           <div
             onClick={handleConfirmedClick}
-            className={`${Styles.ConfirmedAppointments} ${
-              activeFilter === "Confirmed" ? Styles.activeFilter : ""
-            }`}
+            className={`${Styles.ConfirmedAppointments} ${activeFilter === "Confirmed" ? Styles.activeFilter : ""
+              }`}
           >
             <div className={Styles.ConfirmedIcon}>
               <img
@@ -189,9 +183,8 @@ export default function Admin() {
           </div>
           <div
             onClick={handleCanceledClick}
-            className={`${Styles.CanceledAppointments} ${
-              activeFilter === "Canceled" ? Styles.activeFilter : ""
-            }`}
+            className={`${Styles.CanceledAppointments} ${activeFilter === "Canceled" ? Styles.activeFilter : ""
+              }`}
           >
             <div className={Styles.CanceledIcon}>
               <img
@@ -205,9 +198,8 @@ export default function Admin() {
           </div>
           <div
             onClick={handleCompletedClick}
-            className={`${Styles.CompletedAppointments} ${
-              activeFilter === "Completed" ? Styles.activeFilter : ""
-            }`}
+            className={`${Styles.CompletedAppointments} ${activeFilter === "Completed" ? Styles.activeFilter : ""
+              }`}
           >
             <div className={Styles.CompletedIcon}>
               <img
@@ -273,27 +265,27 @@ export default function Admin() {
                     .toFixed(2)}
                 </td>
               </tr>
-             
-                <tr className={Styles.ControlRow}>
-                  <td colSpan="5" className={Styles.pagination}>
-                    <button
-                      onClick={() => handlePagination("prev")}
-                      disabled={currentPage === 1}
-                    >
-                      Previous
-                    </button>
-                    <span>
-                      Page {currentPage} of {totalPages}
-                    </span>
-                    <button
-                      onClick={() => handlePagination("next")}
-                      disabled={currentPage === totalPages}
-                    >
-                      Next
-                    </button>
-                  </td>
-                </tr>
-              
+
+              <tr className={Styles.ControlRow}>
+                <td colSpan="5" className={Styles.pagination}>
+                  <button
+                    onClick={() => handlePagination("prev")}
+                    disabled={currentPage === 1}
+                  >
+                    Previous
+                  </button>
+                  <span>
+                    Page {currentPage} of {totalPages}
+                  </span>
+                  <button
+                    onClick={() => handlePagination("next")}
+                    disabled={currentPage === totalPages}
+                  >
+                    Next
+                  </button>
+                </td>
+              </tr>
+
             </tbody>
           </table>
         </div>
