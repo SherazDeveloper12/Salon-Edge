@@ -21,10 +21,11 @@ function App() {
 
   useEffect(() => {
     // Fetch all data when component mounts
+    dispatch(getCurrentUser(setLoading));
     dispatch(fetchStylists());
     dispatch(fetchServices());
     dispatch(fetchAppointments());
-    dispatch(getCurrentUser(setLoading));
+    ;
 
     // Real-time auth state listener
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -46,7 +47,7 @@ function App() {
   console.log("Dispatched getCurrentUser", user);
   console.log("Dispatched fetchAppointments", appointments);
 
-  if (status === 'loading' || serviceStatus === 'loading' || stylistStatus === 'loading' || appointmentStatus === 'loading') {
+  if (status === 'loading' ) {
     return <Loader />;
   }
 
