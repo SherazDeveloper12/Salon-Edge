@@ -43,3 +43,14 @@
     transition: transform 0.2s;
        border: 1px solid var(--text-color);
 }
+.Signinasking{
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+    color: var(--text-color);
+}
+.Signinasking a{
+    color: var(--text-color);
+    text-decoration: underline;
+    font-weight: 500;
+}

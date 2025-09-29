@@ -46,7 +46,7 @@ export const signup = createAsyncThunk(
       await setDoc(doc(db, "users", userCredential.user.uid), userdetails);
       return userdetails;
     } catch (error) {
-      console.log(error.message);
+      console.log("error jo hai",error.message);
       throw error; // Throw to handle in rejected case
     }
   }

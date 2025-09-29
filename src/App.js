@@ -14,7 +14,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
 
-  const { user, status } = useSelector((state) => state.auth);
+  const { user, status,error } = useSelector((state) => state.auth);
   const { services, status: serviceStatus } = useSelector((state) => state.services);
   const { stylists, stylistStatus } = useSelector((state) => state.stylists);
   const { appointments, appointmentStatus } = useSelector((state) => state.appointments);
