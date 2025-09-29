@@ -6,15 +6,17 @@
   display: flex;
     flex-direction: column;
     width: 100%;
-    padding: 20px;
+   
     box-sizing: border-box;
      padding-left: 60px; /* Space for the navbar */
+     margin-left: auto ;
+        margin-right: auto;
 }
 .Stylists_TopBox{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+   
 }
 .AddStylistButton{
     padding: 10px 20px;

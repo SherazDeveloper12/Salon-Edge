@@ -120,7 +120,7 @@ export default function Admin() {
             </div>
             <div className={Styles.TotalEarningsBox}>
               <p>Total Earnings</p>
-              <p>${calculateTotalEarnings(appointments)}</p>
+              <p>${calculateTotalEarnings(completedAppointments)}</p>
             </div>
             <div className={Styles.PendingEarningsBox}>
               <p>Pending Earnings</p>

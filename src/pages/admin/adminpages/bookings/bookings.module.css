@@ -1,14 +1,240 @@
-.Bookings{
-    display: flex;
-    background-color: rgb(240, 240, 241);
+.Bookings {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background-color-light);
+  min-height: 100vh;
 }
-.Bookings_container{
-    width: 100%;
-    padding: 20px;
-    box-sizing: border-box;
-     padding-left: 60px; /* Space for the navbar */
-    margin-top: 3rem; /* Default margin to clear the collapsed navbar */
-    transition: margin-top 0.4s ease-out; /* Smooth transition for margin adjustment */
 
+.AdminNavbar {
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
 
+.Navbar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.Navbar ul {
+  list-style: none;
+  display: flex;
+  background: #333;
+  border-radius: 5px;
+  padding: 5px;
+  flex-wrap: wrap;
+}
+
+.Navbar ul li {
+  color: white;
+  cursor: pointer;
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin: 0 5px;
+}
+
+.Navbar ul li:hover {
+  background: #4a90e2;
+}
+
+.PendingTab {
+  color: #ffae00 !important;
+}
+
+.ConfirmedTab {
+  color: #00cc00 !important;
+}
+
+.CompletedTab {
+  color: #2c84f8 !important;
+}
+
+.CanceledTab {
+  color: #ff3333 !important;
+}
+
+.active {
+  background: #4a90e2;
+  font-weight: 600;
+  color: white !important;
+}
+
+.Bookings_container {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  padding-left: 60px; /* Space for the navbar */
+  transition: margin-top 0.4s ease-out;
+  max-width: 1200px; /* Limit max width for better readability */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.Bookings_container h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+.Bookings_container p {
+  font-size: 1rem;
+  color: var(--text-color-light);
+  margin-bottom: 1.5rem;
+}
+
+.BookingsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.BookingItem {
+  background: var(--background-color);
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--secondary-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.BookingItem:hover {
+  transform: translateY(-2px);
+}
+
+.BookingItem p {
+  margin: 0.5rem 0;
+  color: var(--text-color);
+}
+
+.BookingItem p strong {
+  font-weight: 600;
+}
+
+.Services {
+  margin-right: 0.5rem;
+  color: var(--primary-color);
+}
+
+.Actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.ConfirmButton {
+  background: #00cc00;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+.ConfirmButton:hover {
+  background: #009900;
+}
+
+.CancelButton {
+  background: #ff3333;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+.CancelButton:hover {
+  background: #cc0000;
+}
+
+.CompleteButton {
+  background: #2c84f8;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+.CompleteButton:hover {
+  background: #1a6bb8;
+}
+
+.PendingButton {
+  background: #ffae00;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+.PendingButton:hover {
+  background: #cc8a00;
+}
+
+.PendingbookingCard {
+  border-left: 5px solid #ffae00;
+}
+
+.ConfirmedbookingCard {
+  border-left: 5px solid #00cc00;
+}
+
+.CanceledbookingCard {
+  border-left: 5px solid #ff3333;
+}
+
+.CompletedbookingCard {
+  border-left: 5px solid #2c84f8;
+}
+
+.Pending {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 500;
+}
+
+.Confirmed {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 500;
+}
+
+.Canceled {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 500;
+}
+
+.Completed {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 500;
+}
+
+.PendingStatus {
+  color: #ffae00;
+}
+
+.ConfirmedStatus {
+  color: #00cc00;
+}
+
+.CompletedStatus {
+  color: #2c84f8;
+}
+
+.CanceledStatus {
+  color: #ff3333;
 }
