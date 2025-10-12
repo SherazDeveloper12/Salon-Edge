@@ -19,10 +19,8 @@ export const fetchStylists = createAsyncThunk(
         id: doc.id,
         ...doc.data()
       }));
-      console.log("Fetched Stylists from Firestore:", stylists); // Debugging log
       return stylists;
     } catch (error) {
-      console.error('Fetch Stylists Error:', error.message);
       return rejectWithValue(error.message);
     }
   }
@@ -36,10 +34,8 @@ export const addStylist = createAsyncThunk(
       const docRef = await addDoc(collection(db, 'stylists'), stylistData);
       await updateDoc(docRef, { id: docRef.id });
       const newStylist = { id: docRef.id, ...stylistData };
-      console.log('Added Stylist:', newStylist); // Debugging log
       return newStylist;
     } catch (error) {
-      console.error('Add Stylist Error:', error.message);
       return rejectWithValue(error.message);
     }
   }
@@ -51,10 +47,8 @@ export const deleteStylist = createAsyncThunk(
   async (stylistId, { rejectWithValue }) => {
     try {
       await deleteDoc(doc(db, 'stylists', stylistId));
-      console.log('Deleted Stylist ID:', stylistId); // Debugging log
       return stylistId;
     } catch (error) {
-      console.error('Delete Stylist Error:', error.message);
       return rejectWithValue(error.message);
     }
   }
@@ -68,10 +62,9 @@ export const updateStylist = createAsyncThunk(
       const stylistRef = doc(db, 'stylists', id);
       await updateDoc(stylistRef, stylistData);
       const updatedStylist = { id, ...stylistData };
-      console.log('Updated Stylist:', updatedStylist); // Debugging log
+
       return updatedStylist;
     } catch (error) {
-      console.error('Update Stylist Error:', error.message);
       return rejectWithValue(error.message);
     }
   }

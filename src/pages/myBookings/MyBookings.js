@@ -13,7 +13,6 @@ export default function MyBookings() {
   const { appointments, status, error } = useSelector((state) => state.appointments); // Fixed selector
   const user = useSelector((state) => state.auth.User);
   const bookings = appointments.filter(appointment => appointment.user?.uid === user.uid);
-  console.log("Bookings in MyBookings component:", bookings); // Debugging log
   const [MyBookings, setMyBookings] = useState(true);
   const [Profile, setProfile] = useState(false);
   const [userDetails, setUserDetails] = useState({
@@ -53,7 +52,6 @@ export default function MyBookings() {
   }
   const handleSaveChanges = () => {
     // Implement save changes logic here
-    console.log('User details to be saved:', userDetails);
     dispatch(updateUserProfile(userDetails));
    
   }

@@ -5,7 +5,6 @@ import Loader from '../../components/loader/Loader';
 import { useSelector } from 'react-redux';
 export default function Services() {
   const { services, status, error } = useSelector((state) => state.services);
-  console.log("Services in Services.js", services);
   return (
     <div className={Styles.services}>
       <Header />

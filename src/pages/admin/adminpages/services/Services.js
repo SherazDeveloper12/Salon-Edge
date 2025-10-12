@@ -22,7 +22,6 @@ export default function AdminServices() {
       Price,
       Duration,
     };
-    console.log("serviceData", serviceData);
     if (isEditing) {
       dispatch(updateService({ id: editingServiceId, ...serviceData }));
     } else {
@@ -72,8 +71,7 @@ export default function AdminServices() {
       Price,
       Duration,
     };
-    console.log("updatedService", updatedService);
-    console.log("editingServiceId", editingServiceId);
+
     dispatch(updateService({ id: editingServiceId, serviceData: updatedService }));
     // Clear fields and close form
     SetServiceName("");

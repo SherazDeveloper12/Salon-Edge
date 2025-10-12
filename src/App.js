@@ -41,11 +41,7 @@ function App() {
     return () => unsubscribe();
   }, [dispatch]);
 
-  console.log("User in App.js", user);
-  console.log("Dispatched fetchStylists", stylists);
-  console.log("Dispatched fetchServices", services);
-  console.log("Dispatched getCurrentUser", user);
-  console.log("Dispatched fetchAppointments", appointments);
+
 
   if (status === 'loading' ) {
     return <Loader />;

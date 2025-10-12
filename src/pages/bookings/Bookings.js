@@ -21,7 +21,7 @@ export default function Bookings() {
   const { stylists, stylistStatus, stylistError } = useSelector((state) => state.stylists);
   const user = useSelector((state) => state.auth.User);
   const handleServiceSelect = (service) => {
-    console.log("Before update - SelectedServices:", selectedServices);
+
     setSelectedServices((prevSelected) => {
       const isSelected = prevSelected.some((s) => s.id === service.id);
       let newSelected;
@@ -30,24 +30,24 @@ export default function Bookings() {
       } else {
         newSelected = [...prevSelected, service];
       }
-      console.log("After update - New SelectedServices:", newSelected);
+      
       return newSelected;
     });
   };
 
   const handleStylistSelect = (stylist) => {
-    console.log("Before update - SelectedStylist:", selectedStylist);
+  
     setSelectedStylist((prevSelected) => {
       const isSelected = prevSelected?.id === stylist.id;
       const newSelected = isSelected ? null : stylist; // Toggle selection
-      console.log("Setting SelectedStylist to:", newSelected); // Log inside setter
+   
       return newSelected;
     });
   };
 
   // Use useEffect to log updated selectedStylist
   useEffect(() => {
-    console.log("Updated SelectedStylist:", selectedStylist); // This will show the latest value
+
   }, [selectedStylist]);
 
   const ContinueClick = () => {
@@ -117,13 +117,13 @@ export default function Bookings() {
   const handleDateSelect = (date) => {
     if (isDateAvailable(date)) {
       setSelectedDate(date);
-      console.log("Selected Date:", date);
+     
     }
   };
 
   const handleTimeSelect = (time) => {
     setSelectedTime(time);
-    console.log("Selected Time:", time);
+  
   };
 
   const calendarDays = getCalendarDays();
@@ -141,7 +141,7 @@ export default function Bookings() {
       user: user,
       createdAt: new Date().toISOString(),
     };
-    console.log("Booking Details:", bookingDetails);
+
     // Here you would typically send bookingDetails to your backend API
     dispatch(addAppointment(bookingDetails)); // Example action dispatch
     // Reset all selections after confirmation

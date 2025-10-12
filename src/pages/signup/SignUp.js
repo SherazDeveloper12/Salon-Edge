@@ -39,7 +39,6 @@ export default function SignUp() {
     // If no validation errors, proceed with signup
     if (Object.keys(errors).length === 0) {
       const user = { name, email, password };
-      console.log('User Created', user);
       dispatch(signup(user));
       // Reset form fields only if signup is successful (handled in Redux)
       setName('');

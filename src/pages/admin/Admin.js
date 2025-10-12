@@ -24,10 +24,6 @@ export default function Admin() {
     (appointment) => appointment.status === "Completed"
   );
 
-  console.log("Pending Appointments:", pendingAppointments);
-  console.log("Confirmed Appointments:", confirmedAppointments);
-  console.log("Canceled Appointments:", canceledAppointments);
-  console.log("Completed Appointments:", completedAppointments);
 
   // Handle status update (e.g., Confirm or Cancel)
   const handleStatusUpdate = (appointmentId, newStatus) => {

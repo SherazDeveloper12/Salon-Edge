@@ -46,7 +46,6 @@ export const deleteService = createAsyncThunk(
 export const updateService = createAsyncThunk(
   'services/updateService',
   async ({ id, serviceData }) => {
-    console.log("Updating service with ID:", id, "and data:", serviceData); // Debugging log
     const serviceRef = doc(db, 'services', id);
     await updateDoc(serviceRef, serviceData);
     return { id, ...serviceData };
@@ -70,7 +69,6 @@ const serviceSlice = createSlice({
       .addCase(fetchServices.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.services = action.payload;
-        console.log("Action Payload in fetchServices.fulfilled:", action.payload); // Debugging log
       })
       .addCase(fetchServices.rejected, (state, action) => {
         state.status = 'failed';

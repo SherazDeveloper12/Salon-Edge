@@ -39,7 +39,6 @@ export default function Signin() {
     // Proceed with login if no validation errors
     if (Object.keys(errors).length === 0) {
       const signinData = { email, password };
-      console.log('Sign-in data:', signinData);
       try {
         await dispatch(login(signinData)).unwrap();
         // Reset form fields on successful login
@@ -54,7 +53,6 @@ export default function Signin() {
   // Redirect to dashboard on successful login
   useEffect(() => {
     if (user) {
-      console.log('User logged in:', user);
       navigate('/dashboard'); // Adjust the route as needed
     }
   }, [user, navigate]);

@@ -19,10 +19,8 @@ export const fetchAppointments = createAsyncThunk(
         id: doc.id,
         ...doc.data()
       }));
-      console.log("Fetched Appointments from Firestore:", appointments); // Debugging log
       return appointments;
     } catch (error) {
-      console.error('Fetch Appointments Error:', error.message);
       return rejectWithValue(error.message);
     }
   }
@@ -36,10 +34,8 @@ export const addAppointment = createAsyncThunk(
       const docRef = await addDoc(collection(db, 'appointments'), appointmentData);
       await updateDoc(docRef, { id: docRef.id });
       const newAppointment = { id: docRef.id, ...appointmentData };
-      console.log('Added Appointment:', newAppointment); // Debugging log
       return newAppointment;
     } catch (error) {
-      console.error('Add Appointment Error:', error.message);
       return rejectWithValue(error.message);
     }
   }
@@ -51,10 +47,8 @@ export const deleteAppointment = createAsyncThunk(
   async (appointmentId, { rejectWithValue }) => {
     try {
       await deleteDoc(doc(db, 'appointments', appointmentId));
-      console.log('Deleted Appointment ID:', appointmentId); // Debugging log
       return appointmentId;
     } catch (error) {
-      console.error('Delete Appointment Error:', error.message);
       return rejectWithValue(error.message);
     }
   }
@@ -65,15 +59,13 @@ export const updateAppointment = createAsyncThunk(
   'appointments/updateAppointment',
   async ({ id, appointmentData }, { rejectWithValue }) => {
     try {
-      console.log('Update Appointment Thunk Called'); // Debugging log
-      console.log('Updating Appointment ID:', id, 'with data:', appointmentData); // Debugging log
+
       const appointmentRef = doc(db, 'appointments', id);
       await updateDoc(appointmentRef, appointmentData);
       const updatedAppointment = { id, ...appointmentData };
-      console.log('Updated Appointment:', updatedAppointment); // Debugging log
+  
       return updatedAppointment;
     } catch (error) {
-      console.error('Update Appointment Error:', error.message);
       return rejectWithValue(error.message);
     }
   }
@@ -96,8 +88,7 @@ const appointmentSlice = createSlice({
       .addCase(fetchAppointments.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.appointments = action.payload;
-        console.log("Fetched Appointments:", action.payload); // Debugging log
-        console.log("Appointments State After Fetch:", state.appointments); // Debugging log
+
       })
       .addCase(fetchAppointments.rejected, (state, action) => {
         state.status = 'failed';

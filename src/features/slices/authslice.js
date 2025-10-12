@@ -6,7 +6,6 @@ import { addDoc, collection, doc, setDoc, getDoc, updateDoc } from "firebase/fir
 export const getCurrentUser = createAsyncThunk(
   "getCurrentUser",
   async (_, { dispatch, rejectWithValue }) => {
-    console.log("getCurrentUser called");
     try {
       return new Promise((resolve) => {
         const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -14,11 +13,9 @@ export const getCurrentUser = createAsyncThunk(
             const uid = user.uid;
             const userdetails = await getDoc(doc(db, "users", uid));
             const loginedUser = userdetails?.data();
-            console.log("Current user", loginedUser?.name);
             dispatch(setUser(loginedUser));
             resolve(loginedUser); // Resolve with user data
           } else {
-            console.log("There is no current user");
             dispatch(setUser(null));
             resolve(null); // Resolve with null if no user
           }
@@ -27,7 +24,6 @@ export const getCurrentUser = createAsyncThunk(
         return () => unsubscribe();
       });
     } catch (error) {
-      console.log(error);
       return rejectWithValue(error.message);
     }
   }
@@ -46,7 +42,6 @@ export const signup = createAsyncThunk(
       await setDoc(doc(db, "users", userCredential.user.uid), userdetails);
       return userdetails;
     } catch (error) {
-      console.log("error jo hai",error.message);
       throw error; // Throw to handle in rejected case
     }
   }
@@ -56,14 +51,11 @@ export const login = createAsyncThunk(
   "login",
   async (user) => {
     try {
-      console.log("user from authslice", user);
       const userCredential = await signInWithEmailAndPassword(auth, user.email, user.password);
       const userdetails = await getDoc(doc(db, "users", userCredential.user.uid));
       const userdata = userdetails?.data();
-      console.log("User that is logged in", userdata);
       return { email: user.email, password: user.password, ...userdata }; // Return login data
     } catch (error) {
-      console.log(error);
       throw error; // Throw to handle in rejected case
     }
   }
@@ -76,7 +68,6 @@ export const logout = createAsyncThunk(
       await signOut(auth);
       return true;
     } catch (error) {
-      console.log(error);
       throw error; // Throw to handle in rejected case
     }
   }
@@ -90,18 +81,14 @@ export const updateUserProfile = createAsyncThunk(
       // Get current user data from Firestore
       const userDoc = await getDoc(userRef);
       const currentUserData = userDoc.data() || {};
-      console.log("Current user data in updating dispatch =>", currentUserData);
       // Merge existing data with updates (soft update)
       const updatedData = { ...currentUserData, ...updatedUserData };
-      console.log("Updated data in updating dispatch =>", updatedData);
       // Update Firestore
       const docRef = doc(db, "users", updatedUserData.uid);
       await updateDoc(docRef, updatedData);
-      console.log("User profile updated in Firestore:", updatedData);
       // Update Redux state
       return updatedData;
     } catch (error) {
-      console.error("Error updating user profile:", error);
       throw error;
     }
   }
@@ -129,7 +116,6 @@ export const authSlice = createSlice({
       .addCase(signup.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.User = action.payload;
-        console.log("User from signup slice", action.payload);
       })
       .addCase(signup.rejected, (state, action) => {
         state.status = 'failed';
@@ -142,7 +128,6 @@ export const authSlice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.User = { email: action.payload.email,  ...action.payload }; // Sync with login data
-        console.log("User from login slice", action.payload);
       })
       .addCase(login.rejected, (state, action) => {
         state.status = 'failed';

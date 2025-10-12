@@ -54,10 +54,10 @@ export default function Stylists() {
       }
       const jsonResponse = await response.json();
       const url = jsonResponse.url;
-      console.log("img url is ", url);
+   
       setFormData((prev) => ({ ...prev, imageUrl: url }));
     } catch (error) {
-      console.error("Error uploading image:", error);
+   
       setFormData((prev) => ({ ...prev, imageUrl: '' }));
       // You can add error message to UI if needed
     } finally {
@@ -66,7 +66,7 @@ export default function Stylists() {
   };
 
   const handleAddStylist = () => {
-    console.log("New Stylist Data:", formData);
+   
     const newStylistData = {
       ...formData,
       rating: formData.rating ? Number(formData.rating) : 0
@@ -86,7 +86,7 @@ export default function Stylists() {
   };
   const handleUpdateStylist = (stylist) => {
     // Implement update functionality here
-    console.log("Update Stylist:", stylist);
+
     // You can open a modal or navigate to an update page with stylist details
     // open add form with existing data
     setFormData({
@@ -103,7 +103,7 @@ export default function Stylists() {
   }
   const handleDeleteStylist = (stylistId) => {
     // Implement delete functionality here
-    console.log("Delete Stylist ID:", stylistId);
+   
     // You can dispatch a delete action here
     dispatch(deleteStylist(stylistId));
   }
@@ -113,7 +113,7 @@ export default function Stylists() {
       ...formData,
     
     }
-    console.log("updatedStylistData", updatedStylistData);
+
     dispatch(updateStylist({id: editingStylistId, stylistData: updatedStylistData}));
     // Clear form and states
     setFormData({
