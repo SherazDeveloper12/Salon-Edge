@@ -17,7 +17,7 @@ function App() {
   const { User, status: authStatus } = useSelector((state) => state.auth);
   const { status: serviceStatus } = useSelector((state) => state.services);
   const { status: stylistStatus } = useSelector((state) => state.stylists);
-  const { status: appointmentStatus } = useSelector((state) => state.appointments);
+  const { appointments,status: appointmentStatus } = useSelector((state) => state.appointments);
 
   // Initial Load: Only ONCE
   useEffect(() => {
@@ -72,8 +72,9 @@ function App() {
 
   if (isLoading) {
     return <Loader />;
+  
   }
-
+  console.log(",appointments",appointments);
   return <Navigation />;
 }
 

@@ -12,7 +12,9 @@ export default function AdminBookings() {
   const dispatch = useDispatch();
   const { appointments, status, error } = useSelector((state) => state.appointments); // Updated selector
   const [filter, setFilter] = useState('Pending'); // Added filter state for navbar functionality
-
+        console.log('Appointments:', appointments); // Debugging log
+        console.log('Status:', status); // Debugging log
+        console.log('Error:', error); // Debugging log
   const handleConfirmBooking = (bookingId) => {
     dispatch(updateAppointment({ id: bookingId, appointmentData: { status: 'Confirmed' } }))
       .then(() => console.log(`Confirmed booking with ID: ${bookingId}`))

@@ -31,21 +31,21 @@ export default function MyBookings() {
   }, [checkappointments]); 
   const handleCancelBooking = (bookingId) => {
     
-    const appointmentData = { status: 'Canceled' }; // Proper appointmentData object
-     dispatch(updateAppointment({ id: bookingId, appointmentData }))
-      .then(() => console.log('Update dispatched successfully'))
-      .catch((err) => console.error('Dispatch error:', err));
-    console.log(`Cancel booking with ID: ${bookingId}`);
-    setCheckAppointments(!checkappointments);
+    // const appointmentData = { status: 'Canceled' }; // Proper appointmentData object
+    //  dispatch(updateAppointment({ id: bookingId, appointmentData }))
+    //   .then(() => console.log('Update dispatched successfully'))
+    //   .catch((err) => console.error('Dispatch error:', err));
+    // console.log(`Cancel booking with ID: ${bookingId}`);
+    // setCheckAppointments(!checkappointments);
   };
 
   const handleBookAgain =  (bookingId) => {
-    const appointmentData = { status: 'Pending' }; // Proper appointmentData object
-     dispatch(updateAppointment({ id: bookingId, appointmentData }))
-      .then(() => console.log('Update dispatched successfully'))
-      .catch((err) => console.error('Dispatch error:', err));
-    console.log(`Book again for booking ID: ${bookingId}`);
-    setCheckAppointments(!checkappointments);
+    // const appointmentData = { status: 'Pending' }; // Proper appointmentData object
+    //  dispatch(updateAppointment({ id: bookingId, appointmentData }))
+    //   .then(() => console.log('Update dispatched successfully'))
+    //   .catch((err) => console.error('Dispatch error:', err));
+    // console.log(`Book again for booking ID: ${bookingId}`);
+    // setCheckAppointments(!checkappointments);
   };
   const handleBookAnother = (bookingId) => {
     navigate('/bookings');
@@ -160,8 +160,8 @@ export default function MyBookings() {
               <label htmlFor="email">Email:</label>
               <input onChange={(e) => setUserDetails({ ...userDetails, email: e.target.value })} type="email" id="email" name="email" defaultValue={user.email} />
             </div>
-            <button className={Styles.saveBtn} onClick={handleSaveChanges}>Save Changes</button>
-            <button className={Styles.cancelBtn} onClick={handleCancelEdit}>Cancel</button></>}
+            <button className={Styles.saveBtn} onClick={() => handleSaveChanges()}>Save Changes</button>
+            <button className={Styles.cancelBtn} onClick={() => handleCancelEdit()}>Cancel</button></>}
          
         </div>
       )}
