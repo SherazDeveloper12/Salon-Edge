@@ -15,41 +15,64 @@ export default function MyBookings() {
   const bookings = appointments.filter(appointment => appointment.user?.uid === user.uid);
   const [MyBookings, setMyBookings] = useState(true);
   const [Profile, setProfile] = useState(false);
+  const [loadingBookingId, setLoadingBookingId] = useState(null); // Track loading state for individual bookings
   const [userDetails, setUserDetails] = useState({
     name: user.name || '',
     email: user.email || '',
     uid: user.uid || ''
   });
   const [filter, setFilter] = useState('Pending');
-   const [checkappointments, setCheckAppointments] = useState(false);
   const filteredBookings = bookings.filter(booking => {
     if (filter === 'All') return true;
     return booking.status === filter;
   });
+  
   useEffect(() => {
-    dispatch(fetchAppointments());
-  }, [checkappointments]); 
-  const handleCancelBooking = (bookingId) => {
-    
-    // const appointmentData = { status: 'Canceled' }; // Proper appointmentData object
-    //  dispatch(updateAppointment({ id: bookingId, appointmentData }))
-    //   .then(() => console.log('Update dispatched successfully'))
-    //   .catch((err) => console.error('Dispatch error:', err));
-    // console.log(`Cancel booking with ID: ${bookingId}`);
-    // setCheckAppointments(!checkappointments);
+    // Sirf ek baar appointments fetch karo jab component mount ho
+    // App.js mein already fetch ho chuke honge, so ye condition extra safety ke liye
+    if (appointments.length === 0 && status === 'idle') {
+      dispatch(fetchAppointments());
+    }
+  }, []); // Empty dependency array - sirf ek baar chalega 
+  const handleCancelBooking = async (bookingId) => {
+    setLoadingBookingId(bookingId);
+    try {
+      const appointmentData = { status: 'Canceled' };
+      await dispatch(updateAppointment({ id: bookingId, appointmentData }));
+      console.log('Appointment canceled successfully');
+      // State automatically update ho jayega Redux se, manual fetch ki zarurat nahi
+    } catch (err) {
+      console.error('Cancel error:', err);
+    } finally {
+      setLoadingBookingId(null);
+    }
   };
 
-  const handleBookAgain =  (bookingId) => {
-    // const appointmentData = { status: 'Pending' }; // Proper appointmentData object
-    //  dispatch(updateAppointment({ id: bookingId, appointmentData }))
-    //   .then(() => console.log('Update dispatched successfully'))
-    //   .catch((err) => console.error('Dispatch error:', err));
-    // console.log(`Book again for booking ID: ${bookingId}`);
-    // setCheckAppointments(!checkappointments);
+  const handleBookAgain = async (bookingId) => {
+    setLoadingBookingId(bookingId);
+    try {
+      const appointmentData = { status: 'Pending' };
+      await dispatch(updateAppointment({ id: bookingId, appointmentData }));
+      console.log('Appointment rebooked successfully');
+      // State automatically update ho jayega Redux se, manual fetch ki zarurat nahi
+    } catch (err) {
+      console.error('Rebook error:', err);
+    } finally {
+      setLoadingBookingId(null);
+    }
   };
   const handleBookAnother = (bookingId) => {
     navigate('/bookings');
-  }
+  };
+
+  const handleMessageContact = () => {
+    navigate('/contact', { state: { focusMessage: true } });
+  };
+
+  const handleCallContact = () => {
+    navigate('/contact', { state: { focusCall: true } });
+  };
+  
   const handleSaveChanges = () => {
     // Implement save changes logic here
     dispatch(updateUserProfile(userDetails));
@@ -106,10 +129,10 @@ export default function MyBookings() {
                 <div className={Styles.cardHeader}>
                   <div className={`${Styles.StatusBar} ${booking.status === 'Pending' ? Styles.PendingStatusBar : booking.status === 'Confirmed' ? Styles.ConfirmedStatusBar : booking.status === 'Canceled' ? Styles.CanceledStatusBar : Styles.CompletedStatusBar}`}>
                     <span className={Styles.statusIcon}>
-                      {booking.status === 'Pending' && '⏳'}
-                      {booking.status === 'Confirmed' && '✅'}
-                      {booking.status === 'Canceled' && '❌'}
-                      {booking.status === 'Completed' && '🟦'}
+                      {booking.status === 'Pending' && <img src={require('../../assets/time-caspule-start-svgrepo-com.png')} alt="Pending" width={20} />}
+                      {booking.status === 'Confirmed' && <img src={require('../../assets/confirmed-svgrepo-com.png')} alt="Confirmed" width={20} />}
+                      {booking.status === 'Canceled' && <img src={require('../../assets/cancel-svgrepo-com.png')} alt="Canceled" width={20} />}
+                      {booking.status === 'Completed' && <img src={require('../../assets/tick-circle-svgrepo-com.png')} alt="Completed" width={20} />}
                     </span>
                     <span>{booking.status}</span>
                   </div>
@@ -122,10 +145,10 @@ export default function MyBookings() {
                 <div>Amount: ${booking.services.reduce((sum, service) => sum + parseFloat(service.Price || 0), 0).toFixed(2)}</div>
                 <div className={`${Styles.Status} ${booking.status === 'Pending' ? Styles.PendingStatus : booking.status === 'Confirmed' ? Styles.ConfirmedStatus : booking.status === 'Canceled' ? Styles.CanceledStatus : Styles.CompletedStatus}`}>
                   <span>
-                    {booking.status === 'Pending' && '⏳'}
-                    {booking.status === 'Confirmed' && '✅'}
-                    {booking.status === 'Canceled' && '❌'}
-                    {booking.status === 'Completed' && '🟦'}
+                    {booking.status === 'Pending' && <img src={require('../../assets/time-caspule-start-svgrepo-com.png')} alt="Pending" width={20} />}
+                    {booking.status === 'Confirmed' && <img src={require('../../assets/confirmed-svgrepo-com.png')} alt="Confirmed" width={20} />}
+                    {booking.status === 'Canceled' && <img src={require('../../assets/cancel-svgrepo-com.png')} alt="Canceled" width={20} />}
+                    {booking.status === 'Completed' && <img src={require('../../assets/tick-circle-svgrepo-com.png')} alt="Completed" width={20} />}
                   </span>
                   <span>
                     {booking.status === 'Pending' && 'Please wait for confirmation'}
@@ -135,13 +158,53 @@ export default function MyBookings() {
                   </span>
                 </div>
                 <div className={Styles.actionButtons}>
-                  <button className={Styles.messageBtn}>Message</button>
-                  <button className={Styles.callBtn}>Call</button>
-                  {booking.status === 'Pending' && <button onClick={() => handleCancelBooking(booking.id)} className={Styles.CancelBtn}>Cancel</button>}
-                  {booking.status === 'Confirmed' && <button onClick={() => handleCancelBooking(booking.id)} className={Styles.CancelBtn}>Cancel</button>}
-                  {booking.status === 'Completed' && <button onClick={() => handleBookAnother(booking.id)} className={Styles.BookAgainBtn}>Book Again</button>}
-                  {booking.status === 'Canceled' && <button onClick={() => handleBookAgain(booking.id)} className={Styles.BookAgainBtn}>Book Again</button>}
-
+                  <button 
+                    className={Styles.messageBtn} 
+                    onClick={handleMessageContact}
+                  >
+                    💬 Message
+                  </button>
+                  <button 
+                    className={Styles.callBtn} 
+                    onClick={handleCallContact}
+                  >
+                    📞 Call
+                  </button>
+                  {booking.status === 'Pending' && (
+                    <button 
+                      onClick={() => handleCancelBooking(booking.id)} 
+                      className={Styles.CancelBtn}
+                      disabled={loadingBookingId === booking.id}
+                    >
+                      {loadingBookingId === booking.id ? 'Canceling...' : 'Cancel'}
+                    </button>
+                  )}
+                  {booking.status === 'Confirmed' && (
+                    <button 
+                      onClick={() => handleCancelBooking(booking.id)} 
+                      className={Styles.CancelBtn}
+                      disabled={loadingBookingId === booking.id}
+                    >
+                      {loadingBookingId === booking.id ? 'Canceling...' : 'Cancel'}
+                    </button>
+                  )}
+                  {booking.status === 'Completed' && (
+                    <button 
+                      onClick={() => handleBookAnother(booking.id)} 
+                      className={Styles.BookAgainBtn}
+                    >
+                      Book Again
+                    </button>
+                  )}
+                  {booking.status === 'Canceled' && (
+                    <button 
+                      onClick={() => handleBookAgain(booking.id)} 
+                      className={Styles.BookAgainBtn}
+                      disabled={loadingBookingId === booking.id}
+                    >
+                      {loadingBookingId === booking.id ? 'Booking...' : 'Book Again'}
+                    </button>
+                  )}
                 </div>
               </div>
             ))}

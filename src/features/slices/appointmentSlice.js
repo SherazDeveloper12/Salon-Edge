@@ -126,14 +126,15 @@ const appointmentSlice = createSlice({
     // Update Appointment
     builder
       .addCase(updateAppointment.pending, (state) => {
-        state.status = 'loading';
+        // Update ke liye global loading state set nahi karte
+        // Individual button loading component level par handle karenge
       })
       .addCase(updateAppointment.fulfilled, (state, action) => {
         state.status = 'succeeded';
         const index = state.appointments.findIndex(appointment => appointment.id === action.payload.id);
         if (index !== -1) {
-          state.appointments.splice(index, 1); // Remove old entry
-          state.appointments.unshift(action.payload); // Add updated entry at top
+          // Existing appointment ko update karo instead of remove/add
+          state.appointments[index] = { ...state.appointments[index], ...action.payload };
         }
       })
       .addCase(updateAppointment.rejected, (state, action) => {

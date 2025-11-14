@@ -23,9 +23,15 @@ export default function Stylists() {
   const fileInputRef = useRef(null);
   const [isEditing, setIsEditing] = useState(false);
   const [editingStylistId, setEditingStylistId] = useState(null);
+  const [loadingStylistId, setLoadingStylistId] = useState(null); // Track individual stylist operations
+  const [isSubmitting, setIsSubmitting] = useState(false); // Track form submission
+  
   useEffect(() => {
-    dispatch(fetchStylists());
-  }, [dispatch]);
+    // App.js mein already fetch ho chuka hoga, sirf agar empty hai to fetch karo
+    if (stylists.length === 0 && stylistStatus === 'idle') {
+      dispatch(fetchStylists());
+    }
+  }, []); // Empty dependency array - sirf ek baar chalega
 
   const handleImageClick = () => {
     fileInputRef.current.click();
@@ -65,24 +71,28 @@ export default function Stylists() {
     }
   };
 
-  const handleAddStylist = () => {
-   
-    const newStylistData = {
-      ...formData,
-      rating: formData.rating ? Number(formData.rating) : 0
-    };
-    dispatch(addStylist(newStylistData));
-    setFormData({
-      stylistName: '',
-      description: '',
-      rating: '',
-      status: 'Available',
-      daysAvailable: [],
-      imageUrl: ''
-
-    });
-
-  
+  const handleAddStylist = async () => {
+    setIsSubmitting(true);
+    try {
+      const newStylistData = {
+        ...formData,
+        rating: formData.rating ? Number(formData.rating) : 0
+      };
+      await dispatch(addStylist(newStylistData));
+      setFormData({
+        stylistName: '',
+        description: '',
+        rating: '',
+        status: 'Available',
+        daysAvailable: [],
+        imageUrl: ''
+      });
+      setIsFormVisible(false); // Close form after successful add
+    } catch (error) {
+      console.error('Add stylist error:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
   const handleUpdateStylist = (stylist) => {
     // Implement update functionality here
@@ -101,35 +111,47 @@ export default function Stylists() {
     setIsEditing(true);
     setEditingStylistId(stylist.id);
   }
-  const handleDeleteStylist = (stylistId) => {
-    // Implement delete functionality here
-   
-    // You can dispatch a delete action here
-    dispatch(deleteStylist(stylistId));
-  }
-
-  const updatingStylist = () => {
-    let  updatedStylistData = {
-      ...formData,
-    
+  const handleDeleteStylist = async (stylistId) => {
+    setLoadingStylistId(stylistId);
+    try {
+      await dispatch(deleteStylist(stylistId));
+      console.log(`Stylist ${stylistId} deleted successfully`);
+    } catch (error) {
+      console.error('Delete stylist error:', error);
+    } finally {
+      setLoadingStylistId(null);
     }
+  };
 
-    dispatch(updateStylist({id: editingStylistId, stylistData: updatedStylistData}));
-    // Clear form and states
-    setFormData({
-      stylistName: '',
-      description: '',
-      rating: '',
-      status: 'Available',
-      daysAvailable: [],
-      imageUrl: ''  
+  const updatingStylist = async () => {
+    setIsSubmitting(true);
+    try {
+      const updatedStylistData = {
+        ...formData,
+        rating: formData.rating ? Number(formData.rating) : 0
+      };
 
+      await dispatch(updateStylist({id: editingStylistId, stylistData: updatedStylistData}));
+      
+      // Clear form and states
+      setFormData({
+        stylistName: '',
+        description: '',
+        rating: '',
+        status: 'Available',
+        daysAvailable: [],
+        imageUrl: ''  
+      });
+      setIsFormVisible(false);
+      setIsEditing(false);
+      setEditingStylistId(null);
+      console.log(`Stylist ${editingStylistId} updated successfully`);
+    } catch (error) {
+      console.error('Update stylist error:', error);
+    } finally {
+      setIsSubmitting(false);
     }
-    );;
-    setIsFormVisible(false);
-    setIsEditing(false);
-    setEditingStylistId(null);
-  }
+  };
   
 
   return (
@@ -233,8 +255,25 @@ export default function Stylists() {
               ))}
             </div>
             <div className={Styles.Buttons}>
-              <button onClick={isEditing? updatingStylist : handleAddStylist} type="button" className={Styles.SubmitButton}>{isEditing? "Update Stylist" : "Add Stylist"}</button>
-              <button onClick={() => setIsFormVisible(false)} type="button" className={Styles.CancelButton}>Cancel</button>
+              <button 
+                onClick={isEditing? updatingStylist : handleAddStylist} 
+                type="button" 
+                className={Styles.SubmitButton}
+                disabled={isSubmitting || isImageUploading}
+              >
+                {isSubmitting ? 
+                  (isEditing ? '⏳ Updating...' : '⏳ Adding...') : 
+                  (isEditing ? 'Update Stylist' : 'Add Stylist')
+                }
+              </button>
+              <button 
+                onClick={() => setIsFormVisible(false)} 
+                type="button" 
+                className={Styles.CancelButton}
+                disabled={isSubmitting}
+              >
+                Cancel
+              </button>
             </div>
           </div>
         )}
@@ -260,14 +299,16 @@ export default function Stylists() {
                     <button
                       onClick={() => handleUpdateStylist(stylist)}
                       className={Styles.UpdateButton}
+                      disabled={loadingStylistId === stylist.id}
                     >
-                      Update 
+                      {loadingStylistId === stylist.id ? '⏳ Loading...' : '📝 Update'}
                     </button>
                     <button
                       onClick={() => handleDeleteStylist(stylist.id)}
                       className={Styles.DeleteButton}
+                      disabled={loadingStylistId === stylist.id}
                     >
-                      Delete 
+                      {loadingStylistId === stylist.id ? '⏳ Deleting...' : '🗑️ Delete'}
                     </button>
                   </div>
                 </div>

@@ -14,27 +14,36 @@ export default function AdminServices() {
   const [Description, SetDescription] = useState("");
   const [Price, SetPrice] = useState("");
   const [Duration, SetDuration] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [loadingServiceId, setLoadingServiceId] = useState(null);
 
-  const handleFormSubmit = () => {
-    const serviceData = {
-      ServiceName,
-      Description,
-      Price,
-      Duration,
-    };
-    if (isEditing) {
-      dispatch(updateService({ id: editingServiceId, ...serviceData }));
-    } else {
-      dispatch(addService(serviceData));
+  const handleFormSubmit = async () => {
+    setIsSubmitting(true);
+    try {
+      const serviceData = {
+        ServiceName,
+        Description,
+        Price,
+        Duration,
+      };
+      if (isEditing) {
+        await dispatch(updateService({ id: editingServiceId, serviceData }));
+      } else {
+        await dispatch(addService(serviceData));
+      }
+      // Clear fields and close form
+      SetServiceName("");
+      SetDescription("");
+      SetPrice("");
+      SetDuration("");
+      setIsFormOpen(false);
+      setIsEditing(false);
+      setEditingServiceId(null);
+    } catch (error) {
+      console.error('Service operation error:', error);
+    } finally {
+      setIsSubmitting(false);
     }
-    // Clear fields and close form
-    SetServiceName("");
-    SetDescription("");
-    SetPrice("");
-    SetDuration("");
-    setIsFormOpen(false);
-    setIsEditing(false);
-    setEditingServiceId(null);
   };
 
   const handleUpdateService = (service) => {
@@ -49,8 +58,16 @@ export default function AdminServices() {
    
   };
 
-  const handleDeleteService = (serviceId) => {
-    dispatch(deleteService(serviceId));
+  const handleDeleteService = async (serviceId) => {
+    setLoadingServiceId(serviceId);
+    try {
+      await dispatch(deleteService(serviceId));
+      console.log(`Service ${serviceId} deleted successfully`);
+    } catch (error) {
+      console.error('Delete service error:', error);
+    } finally {
+      setLoadingServiceId(null);
+    }
   };
 
   const handleCancel = () => {
@@ -63,25 +80,6 @@ export default function AdminServices() {
     setIsEditing(false);
     setEditingServiceId(null);
   };
-
-  const updatingService = () => {
-     let updatedService = {
-        ServiceName,
-      Description,
-      Price,
-      Duration,
-    };
-
-    dispatch(updateService({ id: editingServiceId, serviceData: updatedService }));
-    // Clear fields and close form
-    SetServiceName("");
-    SetDescription("");
-    SetPrice("");
-    SetDuration("");
-    setIsFormOpen(false);
-    setIsEditing(false);
-    setEditingServiceId(null);
-  }
 
   return (
     <div className={Styles.Services}>
@@ -134,16 +132,21 @@ export default function AdminServices() {
               />
               <div className={Styles.Buttons}>
                 <button
-                  onClick={isEditing ? updatingService : handleFormSubmit}
+                  onClick={handleFormSubmit}
                   type="button"
                   className={Styles.SubmitButton}
+                  disabled={isSubmitting}
                 >
-                  {isEditing ? "Update Service" : "Add Service"}
+                  {isSubmitting ? 
+                    (isEditing ? '⏳ Updating...' : '⏳ Adding...') : 
+                    (isEditing ? 'Update Service' : 'Add Service')
+                  }
                 </button>
                 <button
                   type="button"
                   className={Styles.CancelButton}
                   onClick={handleCancel}
+                  disabled={isSubmitting}
                 >
                   Cancel
                 </button>
@@ -165,14 +168,16 @@ export default function AdminServices() {
                     <button
                       onClick={() => handleUpdateService(service)}
                       className={Styles.UpdateButton}
+                      disabled={loadingServiceId === service.id}
                     >
-                      Update Service
+                      {loadingServiceId === service.id ? '⏳ Loading...' : '📝 Update Service'}
                     </button>
                     <button
                       onClick={() => handleDeleteService(service.id)}
                       className={Styles.DeleteButton}
+                      disabled={loadingServiceId === service.id}
                     >
-                      Delete Service
+                      {loadingServiceId === service.id ? '⏳ Deleting...' : '🗑️ Delete Service'}
                     </button>
                   </div>
                 </div>

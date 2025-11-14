@@ -98,7 +98,7 @@ const stylistSlice = createSlice({
     // Add Stylist
     builder
       .addCase(addStylist.pending, (state) => {
-        state.status = 'loading';
+        // Individual loading state component level par handle karenge
       })
       .addCase(addStylist.fulfilled, (state, action) => {
         state.status = 'succeeded';
@@ -112,7 +112,7 @@ const stylistSlice = createSlice({
     // Delete Stylist
     builder
       .addCase(deleteStylist.pending, (state) => {
-        state.status = 'loading';
+        // Individual loading state component level par handle karenge
       })
       .addCase(deleteStylist.fulfilled, (state, action) => {
         state.status = 'succeeded';
@@ -126,7 +126,7 @@ const stylistSlice = createSlice({
     // Update Stylist
     builder
       .addCase(updateStylist.pending, (state) => {
-        state.status = 'loading';
+        // Individual loading state component level par handle karenge
       })
       .addCase(updateStylist.fulfilled, (state, action) => {
         state.status = 'succeeded';

@@ -40,7 +40,7 @@ function App() {
     };
 
     loadApp();
-  }, [dispatch]);
+  }, []); // Empty dependency array - sirf ek baar chalega
 
   // Real-time Auth Listener (Separate – No data re-fetch)
   useEffect(() => {

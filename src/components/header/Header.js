@@ -145,32 +145,29 @@ export default function Header() {
         </Link>
 
         <ul className={Styles.navLinks}>
-          <li>
-            <Link to="/" className={Styles.navLink}>
+        
+            <Link to="/" className={Styles.navLink}>  <li>
               Home
-            </Link>
-          </li>
-          <li>
-            <Link to="/about" className={Styles.navLink}>
+           </li> </Link>
+          
+         
+            <Link to="/about" className={Styles.navLink}> <li>
               About
-            </Link>
-          </li>
-          <li>
-            <Link to="/services" className={Styles.navLink}>
+            </li> </Link>
+          
+            <Link to="/services" className={Styles.navLink}><li>
               Services
-            </Link>
-          </li>
-          <li>
-            <Link to="/contact" className={Styles.navLink}>
+            </li> </Link>
+          
+            <Link to="/contact" className={Styles.navLink}><li>
               Contact
-            </Link>
-          </li>
+            </li> </Link>
           {user && user.email === 'Admin@gmail.com' && (
-            <li>
-              <Link to="/admin" className={Styles.navLink}>
-                Admin
+           
+              <Link to="/admin" className={Styles.navLink}> <li>
+                Admin</li>
               </Link>
-            </li>
+            
           )}
         </ul>
 

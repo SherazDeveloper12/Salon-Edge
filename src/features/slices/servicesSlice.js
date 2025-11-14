@@ -78,7 +78,7 @@ const serviceSlice = createSlice({
     // Add Service
     builder
       .addCase(addService.pending, (state) => {
-        state.status = 'loading';
+        // Individual loading state component level par handle karenge
       })
       .addCase(addService.fulfilled, (state, action) => {
         state.status = 'succeeded';
@@ -92,7 +92,7 @@ const serviceSlice = createSlice({
     // Delete Service
     builder
       .addCase(deleteService.pending, (state) => {
-        state.status = 'loading';
+        // Individual loading state component level par handle karenge
       })
       .addCase(deleteService.fulfilled, (state, action) => {
         state.status = 'succeeded';
@@ -106,7 +106,7 @@ const serviceSlice = createSlice({
     // Update Service
     builder
       .addCase(updateService.pending, (state) => {
-        state.status = 'loading';
+        // Individual loading state component level par handle karenge
       })
       .addCase(updateService.fulfilled, (state, action) => {
         state.status = 'succeeded';
