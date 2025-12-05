@@ -12,6 +12,8 @@ import MyBookings from '../pages/myBookings/MyBookings';
 import AdminServices from '../pages/admin/adminpages/services/Services';
 import AdminBookings from '../pages/admin/adminpages/bookings/Booking';
 import Stylists from '../pages/admin/adminpages/stylists/Stylists';
+import MockPhoneAuth from '../pages/phoneAuth/MockPhoneAuth';
+import LocalSMSAuth from '../pages/phoneAuth/LocalSMSAuth';
 import PrivateRoute from './PrivateRouting';
 import PublicRoute from './PublicRouting';
 
@@ -64,6 +66,14 @@ export default function Navigation() {
     {
       path: "/login",
       element: <PublicRoute><Signin /></PublicRoute>
+    },
+    {
+      path: "/mock-phone-auth",
+      element: <MockPhoneAuth />
+    },
+    {
+      path: "/local-sms-auth",
+      element: <LocalSMSAuth />
     },
   ]);
 
